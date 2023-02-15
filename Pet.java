@@ -85,7 +85,10 @@ public class Pet {
         Vaccine vaccine = new Vaccine();
         vaccine.setVaccineName(vaccineName);
         vaccine.setIsCompleted(isComplete);
+       
         vaccine.setPet(this);
+        
+        
         
         this.vaccine = vaccine;
         

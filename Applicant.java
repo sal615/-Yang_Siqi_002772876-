@@ -85,6 +85,8 @@ public class Applicant {
         pet.setPetType(petType);
         pet.setBreed(breed);
         
+        pet.setOwner(this);
+        
         this.pet = pet;
         
         return pet;

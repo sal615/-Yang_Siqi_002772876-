@@ -25,17 +25,20 @@ public class InsurancePlans {
         this.plansList = plans;
     }
     
-    public PlanDetails createPlans(int planID, String name, double costPerMonth, double costPerAnnum) {
+    public PlanDetails createPlans(int planID, String name, double costPerMonth) {
         PlanDetails plan = new PlanDetails();
         plan.setPlanID(planID);
         plan.setName(name);
         plan.setCostPerMonth(costPerMonth);
-        plan.setCostPerAnnum(costPerAnnum);
+
         
         this.plansList.add(plan);
         
         return plan;
     }
+    
+    
+    
 
     
     

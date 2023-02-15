@@ -4,17 +4,23 @@
  */
 package UI;
 
+import Model.ApplicantsDirectory;
+import Model.Business;
+import Model.InsurancePlans;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author siqiyang
  */
 public class CreateApplicantJPanel extends javax.swing.JPanel {
-
+    private Business business;
     /**
      * Creates new form CreateApplicantJPanel
      */
-    public CreateApplicantJPanel() {
+    public CreateApplicantJPanel(Business business) {
         initComponents();
+        this.business=business;
     }
 
     /**
@@ -27,16 +33,133 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         lastNameField = new javax.swing.JTextField();
+        applicantIDField = new javax.swing.JTextField();
+        lastNameLabel = new javax.swing.JLabel();
+        applicantIDLabel = new javax.swing.JLabel();
+        petGenderLabel = new javax.swing.JLabel();
+        petGenderField = new javax.swing.JTextField();
         firstNameField = new javax.swing.JTextField();
+        firstNameLabel = new javax.swing.JLabel();
+        vaccinecompletionLabel = new javax.swing.JLabel();
+        vaccineCompletionField = new javax.swing.JTextField();
+        petBreedField = new javax.swing.JTextField();
+        petBreedLabel = new javax.swing.JLabel();
+        petNameLabel = new javax.swing.JLabel();
+        petNameField = new javax.swing.JTextField();
+        petAgeLabel = new javax.swing.JLabel();
+        petAgeField = new javax.swing.JTextField();
+        petTypeLabel = new javax.swing.JLabel();
+        petTypeField = new javax.swing.JTextField();
+        vaccineNameLabel = new javax.swing.JLabel();
+        vaccineNameField = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        titleLabel = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        add(lastNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 120, -1));
-        add(firstNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 120, -1));
+        add(lastNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 120, -1));
+        add(applicantIDField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 120, -1));
+
+        lastNameLabel.setText("Applicant Last Name: ");
+        add(lastNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
+
+        applicantIDLabel.setText("Applicant ID");
+        add(applicantIDLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        petGenderLabel.setText("Pet Gender:");
+        add(petGenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, -1, -1));
+        add(petGenderField, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 120, -1));
+        add(firstNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 120, -1));
+
+        firstNameLabel.setText("Applicant First Name: ");
+        add(firstNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        vaccinecompletionLabel.setText("Vaccine completion:");
+        add(vaccinecompletionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
+        add(vaccineCompletionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 120, -1));
+        add(petBreedField, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 120, -1));
+
+        petBreedLabel.setText("Pet Breed:");
+        add(petBreedLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+
+        petNameLabel.setText("Pet Name:");
+        add(petNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+        add(petNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 120, -1));
+
+        petAgeLabel.setText("Pet Age:");
+        add(petAgeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
+        add(petAgeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 120, -1));
+
+        petTypeLabel.setText("Pet Type:");
+        add(petTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
+        add(petTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 120, -1));
+
+        vaccineNameLabel.setText("Vaccine Name:");
+        add(vaccineNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+        add(vaccineNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 120, -1));
+
+        jButton1.setText("Add Applicant");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, -1, -1));
+
+        titleLabel.setText("Create Applicant");
+        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 220, 30));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ApplicantsDirectory applicantsDirectory = this.business.getApplicantdirectory();
+
+        // read the text fields
+        
+        String id = applicantIDField.getText();
+        String firstName = firstNameField.getText();
+        String lastName= lastNameField.getText();
+        
+        String petName =petNameField.getText();
+        String petAge =petAgeField.getText();
+        String petGender =petGenderField.getText();
+        String petType =petTypeField.getText();
+        String petBreed =petBreedField.getText();
+        
+        String vaccineName = vaccineNameField.getText();
+        String completion = vaccineCompletionField.getText();
+        
+
+        
+        // convert/cast and pass
+        applicantsDirectory.createApplicant(Integer.valueOf(id), firstName, lastName, date, pet);
+
+        JOptionPane.showMessageDialog(null, "Added Plans");
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField applicantIDField;
+    private javax.swing.JLabel applicantIDLabel;
     private javax.swing.JTextField firstNameField;
+    private javax.swing.JLabel firstNameLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JTextField lastNameField;
+    private javax.swing.JLabel lastNameLabel;
+    private javax.swing.JTextField petAgeField;
+    private javax.swing.JLabel petAgeLabel;
+    private javax.swing.JTextField petBreedField;
+    private javax.swing.JLabel petBreedLabel;
+    private javax.swing.JTextField petGenderField;
+    private javax.swing.JLabel petGenderLabel;
+    private javax.swing.JTextField petNameField;
+    private javax.swing.JLabel petNameLabel;
+    private javax.swing.JTextField petTypeField;
+    private javax.swing.JLabel petTypeLabel;
+    private javax.swing.JLabel titleLabel;
+    private javax.swing.JTextField vaccineCompletionField;
+    private javax.swing.JTextField vaccineNameField;
+    private javax.swing.JLabel vaccineNameLabel;
+    private javax.swing.JLabel vaccinecompletionLabel;
     // End of variables declaration//GEN-END:variables
 }
