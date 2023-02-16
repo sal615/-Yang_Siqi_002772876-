@@ -27,6 +27,19 @@ public class Applicant {
         this.pet = new Pet();
         
     }
+    
+    public Applicant(int id,String firstName, String lastName,Date date,Pet p){
+        applicatiionID = id;
+        ownerFirstName = firstName;
+        ownerLastName = lastName;
+        
+        this.date = date;
+        pet = p;
+        
+        this.applicants= new ApplicantsDirectory();
+       
+        
+    }
 
     public int getApplicatiionID() {
         return applicatiionID;

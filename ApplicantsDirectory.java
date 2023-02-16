@@ -16,6 +16,7 @@ public class ApplicantsDirectory {
     
     public ApplicantsDirectory(){
         this.applicantList = new ArrayList<Applicant>();
+        
     }
 
     public ArrayList<Applicant> getApplicantlist() {
@@ -69,5 +70,9 @@ public class ApplicantsDirectory {
             }
         }
     }
+    
+
+      
+    
    
 }

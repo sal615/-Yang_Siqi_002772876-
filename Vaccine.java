@@ -14,8 +14,13 @@ public class Vaccine {
     Pet pet;
     
     public Vaccine(){
-        this.pet = new Pet();
+        //this.pet = new Pet();
     }
+    
+    public Vaccine(String vN, boolean c){
+        vaccineName = vN;
+        isCompleted = c;
+    }    
 
     public String getVaccineName() {
         return vaccineName;

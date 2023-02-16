@@ -12,7 +12,7 @@ public class PlanDetails {
     int planID;
     String name;
     double costPerMonth;
-    double costPerAnnum;
+    double costPerAnual;
     InsurancePlans plans;
     
     
@@ -44,13 +44,6 @@ public class PlanDetails {
         this.costPerMonth = costPerMonth;
     }
 
-    public double getCostPerAnnum() {
-        return costPerAnnum;
-    }
-
-    public void setCostPerAnnum(double costPerAnnum) {
-        this.costPerAnnum = costPerAnnum;
-    }
 
     public InsurancePlans getPlans() {
         return plans;
@@ -58,6 +51,19 @@ public class PlanDetails {
 
     public void setPlans(InsurancePlans plans) {
         this.plans = plans;
+    }
+
+    public double getCostPerAnual(double costPerMonth) {
+       return costPerMonth * 12;        
+    }
+
+    public void setCostPerAnual(double costPerAnual) {
+        this.costPerAnual = costPerAnual;
+    }
+ 
+    
+    public double anualCost(double costPerMonth){
+        return costPerMonth * 12;                       
     }
     
     

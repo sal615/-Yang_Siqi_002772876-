@@ -4,9 +4,13 @@
  */
 package UI;
 
+import Model.Applicant;
 import Model.ApplicantsDirectory;
 import Model.Business;
 import Model.InsurancePlans;
+import Model.Pet;
+import Model.Vaccine;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class CreateApplicantJPanel extends javax.swing.JPanel {
     private Business business;
+    private Boolean isnull = false;
     /**
      * Creates new form CreateApplicantJPanel
      */
@@ -34,7 +39,7 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
 
         lastNameField = new javax.swing.JTextField();
         applicantIDField = new javax.swing.JTextField();
-        lastNameLabel = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
         applicantIDLabel = new javax.swing.JLabel();
         petGenderLabel = new javax.swing.JLabel();
         petGenderField = new javax.swing.JTextField();
@@ -54,13 +59,15 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
         vaccineNameField = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         titleLabel = new javax.swing.JLabel();
+        lastNameLabel1 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(lastNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 120, -1));
         add(applicantIDField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 120, -1));
 
-        lastNameLabel.setText("Applicant Last Name: ");
-        add(lastNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
+        dateLabel.setText("Application Date: ");
+        add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
 
         applicantIDLabel.setText("Applicant ID");
         add(applicantIDLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
@@ -107,45 +114,86 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
 
         titleLabel.setText("Create Applicant");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 220, 30));
+
+        lastNameLabel1.setText("Applicant Last Name: ");
+        add(lastNameLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
+
+        jDateChooser1.setDateFormatString("MM-dd-yyyy");
+        add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 120, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         ApplicantsDirectory applicantsDirectory = this.business.getApplicantdirectory();
 
-        // read the text fields
-        
         String id = applicantIDField.getText();
         String firstName = firstNameField.getText();
         String lastName= lastNameField.getText();
+        Date date = jDateChooser1.getDate();
+        
         
         String petName =petNameField.getText();
         String petAge =petAgeField.getText();
         String petGender =petGenderField.getText();
+
         String petType =petTypeField.getText();
         String petBreed =petBreedField.getText();
         
+
         String vaccineName = vaccineNameField.getText();
         String completion = vaccineCompletionField.getText();
-        
 
-        
-        // convert/cast and pass
-        applicantsDirectory.createApplicant(Integer.valueOf(id), firstName, lastName, date, pet);
+  
 
-        JOptionPane.showMessageDialog(null, "Added Plans");
+        if(id==null||firstName==null||lastName==null||date==null|| petName==null||petAge==null||petGender==null||
+               petType==null||petBreed==null||vaccineName==null||completion==null){
+            this.isnull = true;
+            JOptionPane.showMessageDialog(null, "Pleae fill all fields");
+        } else {
+            Boolean isFemale;
+            if (petGender == "male"){
+                isFemale = false;
+            }else{
+                isFemale =true;
+            }
+            
+            Pet pet = new Pet(petName,Integer.valueOf(petAge),isFemale,petType,petBreed);
+
+            Applicant applicant = applicantsDirectory.createApplicant(Integer.valueOf(id), firstName, lastName, date, pet);
+            
+            Boolean isCompleted;
+            if (completion == "Yes" ){
+                isCompleted = true;   
+            }else{
+                isCompleted=false;
+            }
+            Vaccine vaccine = new Vaccine(vaccineName,isCompleted);
+            
+            applicant.setPet(pet);
+            pet.setOwner(applicant);
+            pet.setVaccine(vaccine);
+            vaccine.setPet(pet);
+      
         
+            JOptionPane.showMessageDialog(null, "Created");
+                       
+                      
+        
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField applicantIDField;
     private javax.swing.JLabel applicantIDLabel;
+    private javax.swing.JLabel dateLabel;
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JTextField lastNameField;
-    private javax.swing.JLabel lastNameLabel;
+    private javax.swing.JLabel lastNameLabel1;
     private javax.swing.JTextField petAgeField;
     private javax.swing.JLabel petAgeLabel;
     private javax.swing.JTextField petBreedField;

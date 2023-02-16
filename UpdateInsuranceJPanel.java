@@ -44,12 +44,14 @@ public class UpdateInsuranceJPanel extends javax.swing.JPanel {
         planIDField = new javax.swing.JTextField();
         planNameField = new javax.swing.JTextField();
         planNameLabel = new javax.swing.JLabel();
-        costPerMonthLabel = new javax.swing.JLabel();
-        costPerMonthField = new javax.swing.JTextField();
         UpdatePlanBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         planTable = new javax.swing.JTable();
         viewPlanBtn = new javax.swing.JButton();
+        costPerAnualLabel = new javax.swing.JLabel();
+        costPerAnualField = new javax.swing.JTextField();
+        costPerMonthLabel2 = new javax.swing.JLabel();
+        costPerMonthField = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -61,14 +63,10 @@ public class UpdateInsuranceJPanel extends javax.swing.JPanel {
 
         planIDField.setEnabled(false);
         add(planIDField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 80, -1));
-        add(planNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 80, -1));
+        add(planNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 80, -1));
 
         planNameLabel.setText("Plan Name");
-        add(planNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, -1, -1));
-
-        costPerMonthLabel.setText("Cost Per Month");
-        add(costPerMonthLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 100, 20));
-        add(costPerMonthField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 80, -1));
+        add(planNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
 
         UpdatePlanBtn.setText("Update Plan");
         UpdatePlanBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +74,7 @@ public class UpdateInsuranceJPanel extends javax.swing.JPanel {
                 UpdatePlanBtnActionPerformed(evt);
             }
         });
-        add(UpdatePlanBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
+        add(UpdatePlanBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, -1, -1));
 
         planTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,7 +94,7 @@ public class UpdateInsuranceJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(planTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 410, 190));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 670, 190));
 
         viewPlanBtn.setText("VIew Plans");
         viewPlanBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +103,16 @@ public class UpdateInsuranceJPanel extends javax.swing.JPanel {
             }
         });
         add(viewPlanBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, -1, -1));
+
+        costPerAnualLabel.setText("Cost Per Anual");
+        add(costPerAnualLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 100, 20));
+
+        costPerAnualField.setEnabled(false);
+        add(costPerAnualField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 80, -1));
+
+        costPerMonthLabel2.setText("Cost Per Month");
+        add(costPerMonthLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 100, 20));
+        add(costPerMonthField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 80, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void UpdatePlanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdatePlanBtnActionPerformed
@@ -138,6 +146,8 @@ public class UpdateInsuranceJPanel extends javax.swing.JPanel {
             planIDField.setText(String.valueOf(this.plans.getPlanID()));
             planNameField.setText(String.valueOf(this.plans.getName()));
             costPerMonthField.setText(String.valueOf(this.plans.getCostPerMonth()));
+            costPerAnualField.setText(String.valueOf(this.plans.getCostPerAnual(this.plans.getCostPerMonth())));
+            
 
         } else {
             // no selection made by the user
@@ -152,10 +162,11 @@ public class UpdateInsuranceJPanel extends javax.swing.JPanel {
         if(insurancePlans.getPlans().size()>0){
             viewtableModel.setRowCount(0);
             for (PlanDetails plans:insurancePlans.getPlans()){
-                Object row[] = new Object[3];
+                Object row[] = new Object[4];
                 row[0] = plans;
                 row[1] = plans.getName();
                 row[2] = plans.getCostPerMonth();
+                row[3] = plans.getCostPerAnual(plans.getCostPerMonth());
                 
                 viewtableModel.addRow(row);
             }
@@ -169,8 +180,10 @@ public class UpdateInsuranceJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TitleLabel;
     private javax.swing.JButton UpdatePlanBtn;
+    private javax.swing.JTextField costPerAnualField;
+    private javax.swing.JLabel costPerAnualLabel;
     private javax.swing.JTextField costPerMonthField;
-    private javax.swing.JLabel costPerMonthLabel;
+    private javax.swing.JLabel costPerMonthLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField planIDField;
     private javax.swing.JLabel planIDLabel;

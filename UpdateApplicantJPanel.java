@@ -4,7 +4,13 @@
  */
 package UI;
 
+import Model.Applicant;
+import Model.ApplicantsDirectory;
 import Model.Business;
+import Model.Pet;
+import Model.Vaccine;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,6 +18,10 @@ import Model.Business;
  */
 public class UpdateApplicantJPanel extends javax.swing.JPanel {
     private Business business;
+    DefaultTableModel viewtableModel;
+    Applicant applicant;
+    Pet pet;
+    Vaccine vaccine;
 
     /**
      * Creates new form UpdateApplicantJPanel
@@ -19,6 +29,9 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
     public UpdateApplicantJPanel(Business business) {
         initComponents();
         this.business=business;
+        this.viewtableModel = (DefaultTableModel) applicantTable.getModel();
+        
+        displayApplicantDetails();
     }
 
     /**
@@ -34,8 +47,8 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         firstNameField = new javax.swing.JTextField();
         applicantIDLabel = new javax.swing.JLabel();
         firstNameLabel = new javax.swing.JLabel();
-        lastNameField = new javax.swing.JTextField();
-        lastNameLabel = new javax.swing.JLabel();
+        ApplicationDateField = new javax.swing.JTextField();
+        ApplicationDateLabel = new javax.swing.JLabel();
         petAgeField = new javax.swing.JTextField();
         petNameField = new javax.swing.JTextField();
         petTypeField = new javax.swing.JTextField();
@@ -58,6 +71,8 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         applicantTable = new javax.swing.JTable();
         searchBtn = new javax.swing.JButton();
         searchField = new javax.swing.JTextField();
+        lastNameLabel1 = new javax.swing.JLabel();
+        lastNameField = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -73,11 +88,11 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         firstNameLabel.setText("Applicant First Name: ");
         add(firstNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
-        lastNameField.setEnabled(false);
-        add(lastNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 120, -1));
+        ApplicationDateField.setEnabled(false);
+        add(ApplicationDateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 120, -1));
 
-        lastNameLabel.setText("Applicant Last Name: ");
-        add(lastNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
+        ApplicationDateLabel.setText("Application Date: ");
+        add(ApplicationDateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
         add(petAgeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 120, -1));
         add(petNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 120, -1));
         add(petTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 120, -1));
@@ -105,6 +120,11 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         add(petBreedLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         updateApplicantBtn.setText("Update Applicant");
+        updateApplicantBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateApplicantBtnActionPerformed(evt);
+            }
+        });
         add(updateApplicantBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, -1, -1));
 
         titleLabel.setText("View and Update Applicant");
@@ -117,6 +137,11 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         add(deleteApplicantBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, -1, -1));
 
         viewApplicantBtn.setText("View Applicant");
+        viewApplicantBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewApplicantBtnActionPerformed(evt);
+            }
+        });
         add(viewApplicantBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 380, -1, -1));
 
         applicantTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -124,11 +149,11 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "First Name", "Last Name", "Pet Name", "Pet Age", "Pet Gender", "Pet Breed", "Pet Type", "Vaccine Name", "Competion"
+                "ID", "First Name", "Last Name", "Pet Name", "Vaccine Name", "Competion"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -137,15 +162,99 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(applicantTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 740, 140));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 610, 140));
 
         searchBtn.setText("Search Applicant");
         add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
         add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 150, -1));
+
+        lastNameLabel1.setText("Applicant Last Name: ");
+        add(lastNameLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
+
+        lastNameField.setEnabled(false);
+        add(lastNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 120, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void viewApplicantBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewApplicantBtnActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRow = applicantTable.getSelectedRow();
+
+        if (selectedRow >= 0) {
+
+            // we can directly fetch the Observation object from the Zeroth position
+            this.applicant = (Applicant) applicantTable.getValueAt(selectedRow, 0);
+
+            // fill all the text fields
+            applicantIDField.setText(String.valueOf(this.applicant.getApplicatiionID()));
+            firstNameField.setText(String.valueOf(this.applicant.getOwnerFirstName()));
+            lastNameField.setText(String.valueOf(this.applicant.getOwnerLastName()));
+            ApplicationDateField.setText(String.valueOf(this.applicant.getDate()));
+            
+            petNameField.setText(this.pet.getName());
+            petAgeField.setText(String.valueOf(this.pet.getAge()));
+            petGenderField.setText(String.valueOf(this.pet.getG;
+            petBreedField.setText(String.valueOf(this.pet.getBreed()));
+            petTypeField.setText(String.valueOf(this.pet.getPetType()));
+            
+            vaccineNameField.setText(String.valueOf(this.vaccine.getVaccineName()));
+            vaccineCompletionField.setText(String.valueOf()));
+                    
+
+        } else {
+            // no selection made by the user
+
+            JOptionPane.showMessageDialog(null, "Please select a row!");
+        }
+       
+        
+    }//GEN-LAST:event_viewApplicantBtnActionPerformed
+
+    private void updateApplicantBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateApplicantBtnActionPerformed
+        // TODO add your handling code here:
+        
+        if(!applicantIDField.getText().isEmpty()){
+            this.pet.setName(petNameField.getText());
+            this.pet.setAge(int.valueOf(petAgeField.getText()));
+            this.pet.setBreed(petBreedField.getText());
+            this.pet.setPetType(petTypeField.getText());
+            this.pet.setIsFemale(boolean.valueOf(petGenderField.getText());
+            this.vaccine.setVaccineName(vaccineNameField.getText());
+            this.vaccine.setIsCompleted(boolean.valueOf(vaccineCompletionField.getText()));
+            
+
+        } else {
+            JOptionPane.showMessageDialog(null, "You have not made any selection");
+        }
+        
+        displayApplicantDetails();                                      
+
+    }//GEN-LAST:event_updateApplicantBtnActionPerformed
+    public void displayApplicantDetails() {
+        ApplicantsDirectory applicantDirectory = this.business.getApplicantdirectory();
+        
+        if(applicantDirectory.getApplicantlist().size()>0){
+            viewtableModel.setRowCount(0);
+            for (Applicant applicant:applicantDirectory.getApplicantlist()){
+                Object row[] = new Object[6];
+                row[0] = applicant.getApplicatiionID();
+                row[1] = applicant.getOwnerFirstName();
+                row[2] = applicant.getOwnerLastName();
+                row[3] = applicant.getPet().getName();
+                row[4] = applicant.getPet().getVaccine().getVaccineName();
+                row[5] = applicant.getPet().getVaccine().complete
+                
+                viewtableModel.addRow(row);
+            }
+            
+        } else {
+            System.out.print("Empty list");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ApplicationDateField;
+    private javax.swing.JLabel ApplicationDateLabel;
     private javax.swing.JTextField applicantIDField;
     private javax.swing.JLabel applicantIDLabel;
     private javax.swing.JTable applicantTable;
@@ -154,7 +263,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lastNameField;
-    private javax.swing.JLabel lastNameLabel;
+    private javax.swing.JLabel lastNameLabel1;
     private javax.swing.JTextField petAgeField;
     private javax.swing.JLabel petAgeLabel;
     private javax.swing.JTextField petBreedField;

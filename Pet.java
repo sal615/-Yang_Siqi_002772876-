@@ -18,8 +18,14 @@ public class Pet {
     Vaccine vaccine;
     
     public Pet(){
-        this.owner = new Applicant();
-    
+        //this.owner = new Applicant();
+    }
+    public Pet(String n,int a, boolean isfemale, String t, String b ){
+        name = n;
+        age = a;
+        isFemale = isfemale;
+        petType = t;
+        breed = b;
     }
 
     public String getName() {
@@ -81,19 +87,19 @@ public class Pet {
     
     
     
-    public Vaccine createVaccineDetails(String vaccineName, boolean isComplete) {
-        Vaccine vaccine = new Vaccine();
-        vaccine.setVaccineName(vaccineName);
-        vaccine.setIsCompleted(isComplete);
-       
-        vaccine.setPet(this);
-        
-        
-        
-        this.vaccine = vaccine;
-        
-        return vaccine;
-    }
+//    public Vaccine createVaccineDetails(String vaccineName, boolean isComplete) {
+//        Vaccine vaccine = new Vaccine();
+//        vaccine.setVaccineName(vaccineName);
+//        vaccine.setIsCompleted(isComplete);
+//       
+//        vaccine.setPet(this);
+//        
+//        
+//        
+//        this.vaccine = vaccine;
+//        
+//        return vaccine;
+//    }
     
     
     
