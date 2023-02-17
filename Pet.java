@@ -4,6 +4,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author siqiyang
@@ -11,22 +13,25 @@ package Model;
 public class Pet {
     String name;
     int age;
-    boolean isFemale;
+    String petGender;
     String petType;
     String breed;
     Applicant owner;
-    Vaccine vaccine;
+    ArrayList<Vaccine> vaccineList;
     
     public Pet(){
         //this.owner = new Applicant();
+        vaccineList = new ArrayList<Vaccine>();
     }
-    public Pet(String n,int a, boolean isfemale, String t, String b ){
+    public Pet(String n,int a, String g, String t, String b){
         name = n;
         age = a;
-        isFemale = isfemale;
+        petGender = g;
         petType = t;
-        breed = b;
+        breed = b;  
+        vaccineList = new ArrayList<Vaccine>();
     }
+
 
     public String getName() {
         return name;
@@ -44,12 +49,12 @@ public class Pet {
         this.age = age;
     }
 
-    public boolean isIsFemale() {
-        return isFemale;
+    public String getPetGender() {
+        return petGender;
     }
 
-    public void setIsFemale(boolean isFemale) {
-        this.isFemale = isFemale;
+    public void setPetGender(String petGender) {
+        this.petGender = petGender;
     }
 
     public String getPetType() {
@@ -76,32 +81,26 @@ public class Pet {
         this.owner = owner;
     }
 
-    public Vaccine getVaccine() {
-        return vaccine;
+    public ArrayList<Vaccine> getVaccineList() {
+        return vaccineList;
     }
 
-    public void setVaccine(Vaccine vaccine) {
-        this.vaccine = vaccine;
+    public void setVaccineList(ArrayList<Vaccine> vaccineList) {
+        this.vaccineList = vaccineList;
     }
-    
-    
-    
-    
-//    public Vaccine createVaccineDetails(String vaccineName, boolean isComplete) {
-//        Vaccine vaccine = new Vaccine();
-//        vaccine.setVaccineName(vaccineName);
-//        vaccine.setIsCompleted(isComplete);
-//       
-//        vaccine.setPet(this);
-//        
-//        
-//        
-//        this.vaccine = vaccine;
-//        
-//        return vaccine;
-//    }
-    
-    
+ 
+    public Vaccine createVaccineDetails(String vaccineName, boolean isComplete) {
+        Vaccine vaccine = new Vaccine();
+        vaccine.setVaccineName(vaccineName);
+        vaccine.setIsCompleted(isComplete);
+       
+        vaccine.setPet(this);
+        
+        
+        this.vaccineList.add(vaccine);
+        
+        return vaccine;
+    }
     
     
     

@@ -6,6 +6,7 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,15 +43,15 @@ public class ApplicantsDirectory {
     }
     
     
-    public Boolean checkIfApplicantUnique(String lastName, String firstName){
-        for(Applicant applicant: this.applicantList){
-            if (applicant.getOwnerFirstName().equals(firstName) ){
-                if(applicant.getOwnerLastName().equals(lastName))
-                return false;
-            }
-        }
-        return true;
-    }
+//    public Boolean checkIfApplicantUnique(String lastName, String firstName){
+//        for(Applicant applicant: this.applicantList){
+//            if (applicant.getOwnerFirstName().equals(firstName) ){
+//                if(applicant.getOwnerLastName().equals(lastName))
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
     
     
     public Boolean checkApplicationIDUnique(int id){
@@ -62,14 +63,32 @@ public class ApplicantsDirectory {
         
         return true;
     } 
-    public void removeApplicant(int id) {
-        for(Applicant app: this.getApplicantlist()){
-            if(app.getApplicatiionID()==id){
-                this.applicantList.remove(id);
-                break;
-            }
+    
+    public ArrayList<Applicant> searchApplicant(String firstName){
+        ArrayList<Applicant> applicants= new ArrayList<Applicant>();
+        for (Applicant applicant:applicantList){
+            if(applicant.getOwnerFirstName().equals(applicant)){
+                applicants.add(applicant);
+            }         
         }
+        if (applicants.size()!=0){
+            JOptionPane.showMessageDialog(null, "Not found");
+            return null;
+        }
+        return applicants;
     }
+    
+    public void deleteApplicant(Applicant applicant){
+        applicantList.remove(applicant);
+    }
+//    public void deleteApplicant(int id) {
+//        for(Applicant app: this.getApplicantlist()){
+//            if(app.getApplicatiionID()==id){
+//                this.applicantList.remove(id);
+//                break;
+//            }
+//        }
+//    }
     
 
       

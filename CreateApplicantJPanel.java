@@ -9,7 +9,9 @@ import Model.ApplicantsDirectory;
 import Model.Business;
 import Model.InsurancePlans;
 import Model.Pet;
+import Model.PlanDetails;
 import Model.Vaccine;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -20,12 +22,15 @@ import javax.swing.JOptionPane;
 public class CreateApplicantJPanel extends javax.swing.JPanel {
     private Business business;
     private Boolean isnull = false;
+    Applicant applicant;
     /**
      * Creates new form CreateApplicantJPanel
      */
     public CreateApplicantJPanel(Business business) {
         initComponents();
         this.business=business;
+        
+        populateDropdown();
     }
 
     /**
@@ -42,11 +47,9 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
         dateLabel = new javax.swing.JLabel();
         applicantIDLabel = new javax.swing.JLabel();
         petGenderLabel = new javax.swing.JLabel();
-        petGenderField = new javax.swing.JTextField();
         firstNameField = new javax.swing.JTextField();
         firstNameLabel = new javax.swing.JLabel();
         vaccinecompletionLabel = new javax.swing.JLabel();
-        vaccineCompletionField = new javax.swing.JTextField();
         petBreedField = new javax.swing.JTextField();
         petBreedLabel = new javax.swing.JLabel();
         petNameLabel = new javax.swing.JLabel();
@@ -61,9 +64,20 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
         titleLabel = new javax.swing.JLabel();
         lastNameLabel1 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        petGenderComboBox = new javax.swing.JComboBox();
+        vaccineCompletionComboBox = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
+        insuranceComboBox = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(lastNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 120, -1));
+
+        applicantIDField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                applicantIDFieldFocusLost(evt);
+            }
+        });
         add(applicantIDField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 120, -1));
 
         dateLabel.setText("Application Date: ");
@@ -74,7 +88,6 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
 
         petGenderLabel.setText("Pet Gender:");
         add(petGenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, -1, -1));
-        add(petGenderField, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 120, -1));
         add(firstNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 120, -1));
 
         firstNameLabel.setText("Applicant First Name: ");
@@ -82,7 +95,6 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
 
         vaccinecompletionLabel.setText("Vaccine completion:");
         add(vaccinecompletionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
-        add(vaccineCompletionField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 120, -1));
         add(petBreedField, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 120, -1));
 
         petBreedLabel.setText("Pet Breed:");
@@ -110,7 +122,7 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, -1, -1));
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, -1, -1));
 
         titleLabel.setText("Create Applicant");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 220, 30));
@@ -120,6 +132,25 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
 
         jDateChooser1.setDateFormatString("MM-dd-yyyy");
         add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 120, -1));
+
+        petGenderComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Female", "Male" }));
+        add(petGenderComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 120, -1));
+
+        vaccineCompletionComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
+        add(vaccineCompletionComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 110, -1));
+
+        jButton2.setText("Add Vaccine");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
+
+        add(insuranceComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, 160, -1));
+
+        jLabel1.setText("Assign Insurance");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -130,49 +161,43 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
         String firstName = firstNameField.getText();
         String lastName= lastNameField.getText();
         Date date = jDateChooser1.getDate();
-        
-        
+
         String petName =petNameField.getText();
         String petAge =petAgeField.getText();
-        String petGender =petGenderField.getText();
-
+        String petGender =(String) petGenderComboBox.getSelectedItem();
         String petType =petTypeField.getText();
         String petBreed =petBreedField.getText();
-        
 
         String vaccineName = vaccineNameField.getText();
-        String completion = vaccineCompletionField.getText();
+        String completion = (String) vaccineCompletionComboBox.getSelectedItem();
+        PlanDetails plan = (PlanDetails) insuranceComboBox.getSelectedItem();
 
-  
 
         if(id==null||firstName==null||lastName==null||date==null|| petName==null||petAge==null||petGender==null||
-               petType==null||petBreed==null||vaccineName==null||completion==null){
+               petType==null||petBreed==null||vaccineName.equals("")||completion==null||plan==null){
             this.isnull = true;
             JOptionPane.showMessageDialog(null, "Pleae fill all fields");
         } else {
-            Boolean isFemale;
-            if (petGender == "male"){
-                isFemale = false;
-            }else{
-                isFemale =true;
-            }
-            
-            Pet pet = new Pet(petName,Integer.valueOf(petAge),isFemale,petType,petBreed);
 
-            Applicant applicant = applicantsDirectory.createApplicant(Integer.valueOf(id), firstName, lastName, date, pet);
+            Pet pet = new Pet(petName,Integer.valueOf(petAge),petGender,petType,petBreed);
+
+            this.applicant = applicantsDirectory.createApplicant(Integer.valueOf(id), firstName, lastName, date, pet);
             
             Boolean isCompleted;
-            if (completion == "Yes" ){
+            if (completion.equals("Yes") ){
                 isCompleted = true;   
             }else{
                 isCompleted=false;
             }
-            Vaccine vaccine = new Vaccine(vaccineName,isCompleted);
-            
+
             applicant.setPet(pet);
             pet.setOwner(applicant);
-            pet.setVaccine(vaccine);
-            vaccine.setPet(pet);
+            pet.createVaccineDetails(vaccineName, isCompleted);
+            
+            
+            
+            applicant.setPlan(plan);
+            
       
         
             JOptionPane.showMessageDialog(null, "Created");
@@ -183,6 +208,35 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String name = vaccineNameField.getText();
+        String completion = (String) vaccineCompletionComboBox.getSelectedItem();
+        
+        this.applicant.getPet().createVaccineDetails(name, toBoolean(completion));
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void applicantIDFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_applicantIDFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_applicantIDFieldFocusLost
+    
+    
+    public void populateDropdown(){
+        ArrayList<PlanDetails> plans = this.business.getInsuranceplan().getPlans();
+        
+        for(PlanDetails p: plans){
+            insuranceComboBox.addItem(p);
+        }
+    }
+    
+    public boolean toBoolean(String completion){
+        if(completion.equals("Yes")){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField applicantIDField;
@@ -190,22 +244,25 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel dateLabel;
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNameLabel;
+    private javax.swing.JComboBox insuranceComboBox;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField lastNameField;
     private javax.swing.JLabel lastNameLabel1;
     private javax.swing.JTextField petAgeField;
     private javax.swing.JLabel petAgeLabel;
     private javax.swing.JTextField petBreedField;
     private javax.swing.JLabel petBreedLabel;
-    private javax.swing.JTextField petGenderField;
+    private javax.swing.JComboBox petGenderComboBox;
     private javax.swing.JLabel petGenderLabel;
     private javax.swing.JTextField petNameField;
     private javax.swing.JLabel petNameLabel;
     private javax.swing.JTextField petTypeField;
     private javax.swing.JLabel petTypeLabel;
     private javax.swing.JLabel titleLabel;
-    private javax.swing.JTextField vaccineCompletionField;
+    private javax.swing.JComboBox vaccineCompletionComboBox;
     private javax.swing.JTextField vaccineNameField;
     private javax.swing.JLabel vaccineNameLabel;
     private javax.swing.JLabel vaccinecompletionLabel;

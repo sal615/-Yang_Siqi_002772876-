@@ -37,7 +37,6 @@ public class MainJFrame extends javax.swing.JFrame {
         createApplicantBtn = new javax.swing.JButton();
         viewApplicationBtn = new javax.swing.JButton();
         createInsuranceBtn = new javax.swing.JButton();
-        assignInsuranceBtn = new javax.swing.JButton();
         updateInsuranceBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,14 +67,6 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         ControlJPanel.add(createInsuranceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 55, 137, -1));
 
-        assignInsuranceBtn.setText("Assign Insurance");
-        assignInsuranceBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignInsuranceBtnActionPerformed(evt);
-            }
-        });
-        ControlJPanel.add(assignInsuranceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 319, 137, -1));
-
         updateInsuranceBtn.setText("Update Insurance");
         updateInsuranceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,13 +81,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void assignInsuranceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignInsuranceBtnActionPerformed
-        // TODO add your handling code here:
-        
-        AssignJPanel assignJpanel = new AssignJPanel(business);
-        jSplitPane1.setRightComponent(assignJpanel);
-    }//GEN-LAST:event_assignInsuranceBtnActionPerformed
 
     private void createInsuranceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createInsuranceBtnActionPerformed
         // TODO add your handling code here:
@@ -159,7 +143,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ControlJPanel;
-    private javax.swing.JButton assignInsuranceBtn;
     private javax.swing.JButton createApplicantBtn;
     private javax.swing.JButton createInsuranceBtn;
     private javax.swing.JSplitPane jSplitPane1;

@@ -46,6 +46,9 @@ public class Vaccine {
         this.pet = pet;
     }
     
-    
+    @Override
+    public String toString() {
+        return String.valueOf(vaccineName);
+    }   
     
 }

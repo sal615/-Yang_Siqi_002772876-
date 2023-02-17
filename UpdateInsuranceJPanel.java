@@ -127,7 +127,8 @@ public class UpdateInsuranceJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "You have not made any selection");
         }
         
-        displayInsurancePlans();                                      
+        displayInsurancePlans();  
+        costPerAnualField.setText(String.valueOf(this.plans.getCostPerAnual(plans.getCostPerMonth())));
 
     }//GEN-LAST:event_UpdatePlanBtnActionPerformed
 

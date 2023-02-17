@@ -19,10 +19,11 @@ public class Applicant {
     String ownerLastName;
     Date date;
     Pet pet;
-    ApplicantsDirectory applicants;
+    PlanDetails plan;
+    
     
     public Applicant(){
-        this.applicants= new ApplicantsDirectory();
+        
         this.date = new Date();  
         this.pet = new Pet();
         
@@ -36,7 +37,7 @@ public class Applicant {
         this.date = date;
         pet = p;
         
-        this.applicants= new ApplicantsDirectory();
+        
        
         
     }
@@ -81,20 +82,22 @@ public class Applicant {
         this.pet = pet;
     }
 
-    public ApplicantsDirectory getApplicants() {
-        return applicants;
+    public PlanDetails getPlan() {
+        return plan;
     }
 
-    public void setApplicants(ApplicantsDirectory applicants) {
-        this.applicants = applicants;
+    public void setPlan(PlanDetails plan) {
+        this.plan = plan;
     }
+
+
     
     
-    public Pet createPet(String name, int age, boolean isFemle, String petType,String breed) {
+    public Pet createPet(String name, int age, String gender, String petType,String breed) {
         Pet pet = new Pet();
         pet.setName(name);
         pet.setAge(age);
-        pet.setIsFemale(isFemle);
+        pet.setPetGender(gender);
         pet.setPetType(petType);
         pet.setBreed(breed);
         
@@ -103,6 +106,11 @@ public class Applicant {
         this.pet = pet;
         
         return pet;
+    }
+    
+    @Override
+    public String toString() {
+        return String.valueOf(applicatiionID);
     }
     
     

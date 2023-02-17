@@ -66,5 +66,10 @@ public class PlanDetails {
         return costPerMonth * 12;                       
     }
     
+    @Override
+    public String toString() {
+        return String.valueOf(this.planID);
+    }
+    
     
 }
