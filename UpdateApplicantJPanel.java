@@ -69,7 +69,6 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         petBreedField = new javax.swing.JTextField();
         petBreedLabel = new javax.swing.JLabel();
         updateApplicantBtn = new javax.swing.JButton();
-        titleLabel = new javax.swing.JLabel();
         petAgeLabel = new javax.swing.JLabel();
         deleteApplicantBtn = new javax.swing.JButton();
         viewApplicantBtn = new javax.swing.JButton();
@@ -88,7 +87,12 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         updateVaccine = new javax.swing.JButton();
         searchIdBtn = new javax.swing.JButton();
         serachIdField = new javax.swing.JTextField();
+        titleLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 237, 237));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         applicantIDField.setEnabled(false);
@@ -108,30 +112,30 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
 
         ApplicationDateLabel.setText("Application Date: ");
         add(ApplicationDateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, -1, -1));
-        add(petAgeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 120, -1));
-        add(petNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 120, -1));
-        add(petTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 120, -1));
+        add(petAgeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 120, -1));
+        add(petNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 120, -1));
+        add(petTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 120, -1));
 
         petTypeLabel.setText("Pet Type:");
-        add(petTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, -1));
+        add(petTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
         petNameLabel.setText("Pet Name:");
-        add(petNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+        add(petNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         vaccineNameLabel.setText("Vaccine Name:");
-        add(vaccineNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
-        add(vaccineNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 120, -1));
+        add(vaccineNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, -1, -1));
+        add(vaccineNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 120, -1));
 
         vaccinecompletionLabel.setText("Vaccine completion:");
-        add(vaccinecompletionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
+        add(vaccinecompletionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, -1, -1));
 
         petGenderLabel.setText("Pet Gender:");
-        add(petGenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
-        add(petGenderField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 120, -1));
-        add(petBreedField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 120, -1));
+        add(petGenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+        add(petGenderField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 120, -1));
+        add(petBreedField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 120, -1));
 
         petBreedLabel.setText("Pet Breed:");
-        add(petBreedLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+        add(petBreedLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
 
         updateApplicantBtn.setText("Update Applicant");
         updateApplicantBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -139,13 +143,10 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
                 updateApplicantBtnActionPerformed(evt);
             }
         });
-        add(updateApplicantBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, -1, -1));
-
-        titleLabel.setText("View and Update Applicant");
-        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 220, 30));
+        add(updateApplicantBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, -1, -1));
 
         petAgeLabel.setText("Pet Age:");
-        add(petAgeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+        add(petAgeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
         deleteApplicantBtn.setText("Delete Applicant");
         deleteApplicantBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +154,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
                 deleteApplicantBtnActionPerformed(evt);
             }
         });
-        add(deleteApplicantBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 370, -1, -1));
+        add(deleteApplicantBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 190, -1, -1));
 
         viewApplicantBtn.setText("View Applicant");
         viewApplicantBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +162,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
                 viewApplicantBtnActionPerformed(evt);
             }
         });
-        add(viewApplicantBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 130, -1));
+        add(viewApplicantBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, 130, -1));
 
         applicantTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -173,7 +174,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(applicantTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 280, 140));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 280, 140));
 
         searchBtn.setText("Search Applicant by Name");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -181,8 +182,8 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
                 searchBtnActionPerformed(evt);
             }
         });
-        add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
-        add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 150, -1));
+        add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
+        add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 150, -1));
 
         lastNameLabel1.setText("Applicant Last Name: ");
         add(lastNameLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
@@ -208,12 +209,12 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(vaccineTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 270, 140));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 270, 140));
 
-        add(InsuranceComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 160, -1));
+        add(InsuranceComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 560, 160, -1));
 
-        jLabel1.setText("Insurance Name:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, -1));
+        jLabel1.setText("Insurance ID:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
 
         viewVaccineBtn.setText("View Vaccine");
         viewVaccineBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -221,10 +222,10 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
                 viewVaccineBtnActionPerformed(evt);
             }
         });
-        add(viewVaccineBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 370, 120, -1));
+        add(viewVaccineBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 130, -1));
 
         vaccineCompletionComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Yes", "No" }));
-        add(vaccineCompletionComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 470, 130, -1));
+        add(vaccineCompletionComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 490, 120, -1));
 
         updateVaccine.setText("Update Vaccine");
         updateVaccine.addActionListener(new java.awt.event.ActionListener() {
@@ -232,7 +233,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
                 updateVaccineActionPerformed(evt);
             }
         });
-        add(updateVaccine, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, 130, -1));
+        add(updateVaccine, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 130, -1));
 
         searchIdBtn.setText("Search Applicant by ID");
         searchIdBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -240,14 +241,30 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
                 searchIdBtnActionPerformed(evt);
             }
         });
-        add(searchIdBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 180, -1));
+        add(searchIdBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 180, -1));
 
         serachIdField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 serachIdFieldActionPerformed(evt);
             }
         });
-        add(serachIdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 150, -1));
+        add(serachIdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 150, -1));
+
+        titleLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        titleLabel1.setText("View and Update Applicant");
+        add(titleLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 300, 30));
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel3.setText("Pet's Information:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 130, -1));
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel4.setText("Insurance Information:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 170, -1));
+
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel5.setText("Pet's Vaccine details:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 170, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewApplicantBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewApplicantBtnActionPerformed
@@ -330,7 +347,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
             
             
         }else {
-            JOptionPane.showMessageDialog(null, "Please select a row to update");
+            JOptionPane.showMessageDialog(null, "Please select a Vaccine to view");
         }
         
         
@@ -357,7 +374,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
             displayVaccineDetails();
             
         } else {
-            JOptionPane.showMessageDialog(null, "Please select a vaccine to view");
+            JOptionPane.showMessageDialog(null, "Please select a vaccine to update");
             
         }
     }//GEN-LAST:event_updateVaccineActionPerformed
@@ -507,6 +524,9 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lastNameField;
@@ -525,7 +545,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField searchField;
     private javax.swing.JButton searchIdBtn;
     private javax.swing.JTextField serachIdField;
-    private javax.swing.JLabel titleLabel;
+    private javax.swing.JLabel titleLabel1;
     private javax.swing.JButton updateApplicantBtn;
     private javax.swing.JButton updateVaccine;
     private javax.swing.JComboBox vaccineCompletionComboBox;

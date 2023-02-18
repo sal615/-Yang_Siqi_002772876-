@@ -38,9 +38,13 @@ public class MainJFrame extends javax.swing.JFrame {
         viewApplicationBtn = new javax.swing.JButton();
         createInsuranceBtn = new javax.swing.JButton();
         updateInsuranceBtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jSplitPane1.setBackground(new java.awt.Color(204, 255, 255));
+
+        ControlJPanel.setBackground(new java.awt.Color(0, 204, 204));
         ControlJPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         createApplicantBtn.setText("Create Application");
@@ -76,6 +80,9 @@ public class MainJFrame extends javax.swing.JFrame {
         ControlJPanel.add(updateInsuranceBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 114, -1, -1));
 
         jSplitPane1.setLeftComponent(ControlJPanel);
+
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jSplitPane1.setRightComponent(jPanel1);
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
@@ -145,6 +152,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel ControlJPanel;
     private javax.swing.JButton createApplicantBtn;
     private javax.swing.JButton createInsuranceBtn;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton updateInsuranceBtn;
     private javax.swing.JButton viewApplicationBtn;

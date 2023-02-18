@@ -39,10 +39,11 @@ public class CreateInsurancePlanJPanel extends javax.swing.JPanel {
         planIDLabel = new javax.swing.JLabel();
         createPlanBtn = new javax.swing.JButton();
         planNameLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         costPerMonthLabel1 = new javax.swing.JLabel();
         monthCostField1 = new javax.swing.JTextField();
+        titleLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         planIDField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -50,11 +51,11 @@ public class CreateInsurancePlanJPanel extends javax.swing.JPanel {
                 planIDFieldFocusLost(evt);
             }
         });
-        add(planIDField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 140, -1));
-        add(planNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 140, -1));
+        add(planIDField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 140, -1));
+        add(planNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 140, -1));
 
         planIDLabel.setText("Plan ID");
-        add(planIDLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+        add(planIDLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
 
         createPlanBtn.setText("Add Plan");
         createPlanBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -62,17 +63,18 @@ public class CreateInsurancePlanJPanel extends javax.swing.JPanel {
                 createPlanBtnActionPerformed(evt);
             }
         });
-        add(createPlanBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, -1, -1));
+        add(createPlanBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
 
         planNameLabel.setText("Plan Name");
-        add(planNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, -1, -1));
-
-        jLabel1.setText("Create Insurance Plan");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 260, 60));
+        add(planNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
 
         costPerMonthLabel1.setText("Cost Per Month");
-        add(costPerMonthLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 100, 20));
-        add(monthCostField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 140, -1));
+        add(costPerMonthLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 100, 20));
+        add(monthCostField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 140, -1));
+
+        titleLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        titleLabel.setText("Create Plan");
+        add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 220, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createPlanBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPlanBtnActionPerformed
@@ -121,11 +123,11 @@ public class CreateInsurancePlanJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel costPerMonthLabel1;
     private javax.swing.JButton createPlanBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField monthCostField1;
     private javax.swing.JTextField planIDField;
     private javax.swing.JLabel planIDLabel;
     private javax.swing.JTextField planNameField;
     private javax.swing.JLabel planNameLabel;
+    private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

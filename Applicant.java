@@ -88,7 +88,7 @@ public class Applicant {
 
     public void setPlan(PlanDetails plan) {
         this.plan = plan;
-        System.out.println(plan.getPlanID());
+        
     }
 
 

@@ -69,7 +69,12 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         insuranceComboBox = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(153, 204, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(lastNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 120, -1));
 
@@ -87,34 +92,34 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
         add(applicantIDLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         petGenderLabel.setText("Pet Gender:");
-        add(petGenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, -1, -1));
+        add(petGenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
         add(firstNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 120, -1));
 
         firstNameLabel.setText("Applicant First Name: ");
         add(firstNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         vaccinecompletionLabel.setText("Vaccine completion:");
-        add(vaccinecompletionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
-        add(petBreedField, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 120, -1));
+        add(vaccinecompletionLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, -1, -1));
+        add(petBreedField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 120, -1));
 
         petBreedLabel.setText("Pet Breed:");
-        add(petBreedLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+        add(petBreedLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
 
         petNameLabel.setText("Pet Name:");
-        add(petNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
-        add(petNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 120, -1));
+        add(petNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        add(petNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 120, -1));
 
         petAgeLabel.setText("Pet Age:");
-        add(petAgeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, -1, -1));
-        add(petAgeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 120, -1));
+        add(petAgeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
+        add(petAgeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 120, -1));
 
         petTypeLabel.setText("Pet Type:");
-        add(petTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, -1));
-        add(petTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 120, -1));
+        add(petTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
+        add(petTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 120, -1));
 
         vaccineNameLabel.setText("Vaccine Name:");
-        add(vaccineNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
-        add(vaccineNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 120, -1));
+        add(vaccineNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, -1, -1));
+        add(vaccineNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 200, 120, -1));
 
         addBtn.setText("Add Applicant");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -122,8 +127,9 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
                 addBtnActionPerformed(evt);
             }
         });
-        add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, -1, -1));
+        add(addBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, -1, -1));
 
+        titleLabel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         titleLabel.setText("Create Applicant");
         add(titleLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 220, 30));
 
@@ -134,10 +140,10 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
         add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 120, -1));
 
         petGenderComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Female", "Male" }));
-        add(petGenderComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 120, -1));
+        add(petGenderComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 120, -1));
 
         vaccineCompletionComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No", "Yes" }));
-        add(vaccineCompletionComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 110, -1));
+        add(vaccineCompletionComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 110, -1));
 
         jButton2.setText("Add Vaccine");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -145,12 +151,28 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, -1, -1));
 
-        add(insuranceComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, 160, -1));
+        add(insuranceComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, 160, -1));
 
         jLabel1.setText("Assign Insurance");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel2.setText("Insurance Information:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, 170, -1));
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel3.setText("Pet's Information:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 130, -1));
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        jLabel4.setText("Pet's Vaccine details:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 170, -1));
+
+        jLabel5.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel5.setText("*Enter \"No\" for name if not inject any vaccine");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 290, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
@@ -268,6 +290,10 @@ public class CreateApplicantJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField lastNameField;
     private javax.swing.JLabel lastNameLabel1;
     private javax.swing.JTextField petAgeField;
