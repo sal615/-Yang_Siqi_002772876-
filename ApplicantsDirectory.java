@@ -43,44 +43,46 @@ public class ApplicantsDirectory {
     }
     
     
-//    public Boolean checkIfApplicantUnique(String lastName, String firstName){
-//        for(Applicant applicant: this.applicantList){
-//            if (applicant.getOwnerFirstName().equals(firstName) ){
-//                if(applicant.getOwnerLastName().equals(lastName))
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-    
+
     
     public Boolean checkApplicationIDUnique(int id){
         for (Applicant a: this.applicantList){
             if(a.getApplicatiionID()==id){
-                return false;
+                return false;            
             }
         }
         
         return true;
     } 
     
-    public ArrayList<Applicant> searchApplicant(String firstName){
+    public ArrayList<Applicant> searchApplicant(String Name){
         ArrayList<Applicant> applicants= new ArrayList<Applicant>();
         for (Applicant applicant:applicantList){
-            if(applicant.getOwnerFirstName().equals(applicant)){
+            if(applicant.getOwnerFirstName().equals(Name)||applicant.getOwnerLastName().equals(Name)){
+              
                 applicants.add(applicant);
             }         
         }
-        if (applicants.size()!=0){
-            JOptionPane.showMessageDialog(null, "Not found");
-            return null;
-        }
+       
         return applicants;
     }
+    
+    public ArrayList<Applicant> searchApplicantByID(int id){
+        ArrayList<Applicant> applicants= new ArrayList<Applicant>();
+        for (Applicant applicant:applicantList){
+            if(applicant.getApplicatiionID() == id){
+              
+                applicants.add(applicant);
+            }         
+        }
+       
+        return applicants;
+    }   
     
     public void deleteApplicant(Applicant applicant){
         applicantList.remove(applicant);
     }
+    
 //    public void deleteApplicant(int id) {
 //        for(Applicant app: this.getApplicantlist()){
 //            if(app.getApplicatiionID()==id){
@@ -91,7 +93,15 @@ public class ApplicantsDirectory {
 //    }
     
 
-      
+      //    public Boolean checkIfApplicantUnique(String lastName, String firstName){
+//        for(Applicant applicant: this.applicantList){
+//            if (applicant.getOwnerFirstName().equals(firstName) ){
+//                if(applicant.getOwnerLastName().equals(lastName))
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
     
    
 }

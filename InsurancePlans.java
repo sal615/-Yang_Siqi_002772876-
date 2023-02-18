@@ -37,6 +37,16 @@ public class InsurancePlans {
         return plan;
     }
     
+    public Boolean checkInsuranceIDUnique(int id){
+        for (PlanDetails p: this.plansList){
+            if(p.getPlanID()==id){
+                return false;            
+            }
+        }
+        
+        return true;
+    }     
+    
 
     
     

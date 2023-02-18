@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 public class CreateInsurancePlanJPanel extends javax.swing.JPanel {
     
     private Business business;
+    private Boolean isnull = false;
 
     /**
      * Creates new form CreateInsurancePlanJPanel
@@ -43,6 +44,12 @@ public class CreateInsurancePlanJPanel extends javax.swing.JPanel {
         monthCostField1 = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        planIDField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                planIDFieldFocusLost(evt);
+            }
+        });
         add(planIDField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 140, -1));
         add(planNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 140, -1));
 
@@ -72,16 +79,43 @@ public class CreateInsurancePlanJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         InsurancePlans insurancePlans = this.business.getInsuranceplan();
-        // read the text fields
-        
+               
         String id = planIDField.getText();
         String planName = planNameField.getText();
         String monthCost = monthCostField1.getText();
-        // convert/cast and pass
+        
+        if(id.equals("")||planName.equals("")||monthCost.equals("")){
+            this.isnull = true;
+            JOptionPane.showMessageDialog(null, "Pleae fill all fields");      
+        } else {
+            boolean i=this.business.getInsuranceplan().checkInsuranceIDUnique(Integer.valueOf(id));
+            if(i){
+                insurancePlans.createPlans(Integer.valueOf(id), planName, Double.valueOf(monthCost));
+                JOptionPane.showMessageDialog(null, "Added Plans");            
 
-        insurancePlans.createPlans(Integer.valueOf(id), planName, Double.valueOf(monthCost));
-        JOptionPane.showMessageDialog(null, "Added Plans");
+        }else{
+            JOptionPane.showMessageDialog(null, "ID already exist");
+            planIDField.setText("");
+        }
+        }
+        
+
+            
     }//GEN-LAST:event_createPlanBtnActionPerformed
+
+    private void planIDFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_planIDFieldFocusLost
+        // TODO add your handling code here:
+        String id =planIDField.getText();
+        
+        boolean i=this.business.getInsuranceplan().checkInsuranceIDUnique(Integer.valueOf(id));
+        
+        if(i){
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "ID already exist");
+            planIDField.setText("");
+        }
+    }//GEN-LAST:event_planIDFieldFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

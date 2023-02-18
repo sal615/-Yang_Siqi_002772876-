@@ -102,8 +102,6 @@ public class Pet {
         return vaccine;
     }
     
-    
-    
-    
+   
     
 }

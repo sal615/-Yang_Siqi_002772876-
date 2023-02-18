@@ -38,7 +38,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         
         displayApplicantDetails();
         vaccineCompletionComboBox.setSelectedItem(null);
-        
+        displayInsuranceDropdown();
     }
 
     /**
@@ -86,6 +86,8 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         viewVaccineBtn = new javax.swing.JButton();
         vaccineCompletionComboBox = new javax.swing.JComboBox();
         updateVaccine = new javax.swing.JButton();
+        searchIdBtn = new javax.swing.JButton();
+        serachIdField = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -171,16 +173,16 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(applicantTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 280, 140));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 280, 140));
 
-        searchBtn.setText("Search Applicant");
+        searchBtn.setText("Search Applicant by Name");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBtnActionPerformed(evt);
             }
         });
-        add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, -1));
-        add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 150, -1));
+        add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
+        add(searchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 150, -1));
 
         lastNameLabel1.setText("Applicant Last Name: ");
         add(lastNameLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, -1, -1));
@@ -206,7 +208,7 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(vaccineTable);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 190, 270, 140));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 270, 140));
 
         add(InsuranceComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 160, -1));
 
@@ -231,6 +233,21 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
             }
         });
         add(updateVaccine, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, 130, -1));
+
+        searchIdBtn.setText("Search Applicant by ID");
+        searchIdBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchIdBtnActionPerformed(evt);
+            }
+        });
+        add(searchIdBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 180, -1));
+
+        serachIdField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serachIdFieldActionPerformed(evt);
+            }
+        });
+        add(serachIdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 150, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewApplicantBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewApplicantBtnActionPerformed
@@ -256,17 +273,18 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
             petTypeField.setText(String.valueOf(this.pet.getPetType()));
             
             InsuranceComboBox.setSelectedItem(applicant.getPlan());
+//            InsuranceComboBox.removeAllItems();
+//            for(PlanDetails plan: business.getInsuranceplan().getPlans()){
+//                InsuranceComboBox.addItem(plan);
+//                if(plan.getPlanID()==applicant.getPlan().getPlanID()){
+//                    InsuranceComboBox.setSelectedItem(plan);
+//                }
+//            }
             
             displayVaccineDetails();
-            displayInsuranceDropdown();
-//            populateVaccineDropdown();
-            
-            
-            
+           
 
         } else {
-            // no selection made by the user
-
             JOptionPane.showMessageDialog(null, "Please select a row!");
         }
        
@@ -333,11 +351,13 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
                 isCompleted = true;   
             }else{
                 isCompleted=false;
-            }
-            
+            }            
             this.vaccine.setIsCompleted(isCompleted);
+            
+            displayVaccineDetails();
+            
         } else {
-            JOptionPane.showMessageDialog(null, "Please select a row to update");
+            JOptionPane.showMessageDialog(null, "Please select a vaccine to view");
             
         }
     }//GEN-LAST:event_updateVaccineActionPerformed
@@ -352,8 +372,10 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
             if(dialogResult == JOptionPane.YES_NO_OPTION){
                 Applicant applicant = (Applicant) applicantTable.getValueAt(selectedRow, 0);
                 business.getApplicantdirectory().deleteApplicant(applicant);
-                
+                this.applicant=null;
                 displayApplicantDetails();
+                displayVaccineDetails();
+                
             }
             
         }else{
@@ -366,13 +388,57 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
         
         String input= searchField.getText();
         
-        ArrayList<Applicant> applicantList = this.business.getApplicantdirectory().searchApplicant(input);
+        ArrayList<Applicant> result = this.business.getApplicantdirectory().searchApplicant(input);
+        
+        if (result==null){
+            JOptionPane.showMessageDialog(null, "Not exist");
+        }else{
+            viewtableModel.setRowCount(0);
+            for (Applicant applicant:result){
+                Object row[] = new Object[4];
+                row[0] = applicant;
+                row[1] = applicant.getOwnerFirstName();
+                row[2] = applicant.getOwnerLastName();
+                row[3] = applicant.getPet().getName();
+                
+                viewtableModel.addRow(row);
+            }
+         
+        }
         
         //applicantTable
         
        
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void serachIdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serachIdFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_serachIdFieldActionPerformed
+
+    private void searchIdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIdBtnActionPerformed
+        // TODO add your handling code here:
+        String input= serachIdField.getText();
+        
+        ArrayList<Applicant> result = this.business.getApplicantdirectory().searchApplicantByID(Integer.valueOf(input));
+        
+        if (result==null){
+            JOptionPane.showMessageDialog(null, "Not exist");
+        }else{
+            viewtableModel.setRowCount(0);
+            for (Applicant applicant:result){
+                Object row[] = new Object[4];
+                row[0] = applicant;
+                row[1] = applicant.getOwnerFirstName();
+                row[2] = applicant.getOwnerLastName();
+                row[3] = applicant.getPet().getName();
+                
+                viewtableModel.addRow(row);
+            }
+         
+        }
+    }//GEN-LAST:event_searchIdBtnActionPerformed
     public void displayApplicantDetails() {
+        viewtableModel.setRowCount(0);
         ApplicantsDirectory applicantDirectory = this.business.getApplicantdirectory();
         
         if(applicantDirectory.getApplicantlist().size()>0){
@@ -393,8 +459,11 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
     }
     
     public void displayVaccineDetails(){
-       ArrayList<Vaccine> vaccineList = this.applicant.getPet().getVaccineList();
-       
+        miniTableModel.setRowCount(0);
+       if(applicant!=null){
+           
+           ArrayList<Vaccine> vaccineList = this.applicant.getPet().getVaccineList();
+
        if(vaccineList.size()>0){
            miniTableModel.setRowCount(0);
            for (Vaccine vaccine:applicant.getPet().getVaccineList()){
@@ -409,10 +478,11 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
            System.out.print("Select ");
        }
     }
+    }
     
     public void displayInsuranceDropdown(){
         ArrayList<PlanDetails> plans = this.business.getInsuranceplan().getPlans();
-        
+        //InsuranceComboBox.removeAllItems();
         for(PlanDetails p: plans){
             InsuranceComboBox.addItem(p);
         }
@@ -453,6 +523,8 @@ public class UpdateApplicantJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel petTypeLabel;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchField;
+    private javax.swing.JButton searchIdBtn;
+    private javax.swing.JTextField serachIdField;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JButton updateApplicantBtn;
     private javax.swing.JButton updateVaccine;
