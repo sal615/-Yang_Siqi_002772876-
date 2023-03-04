@@ -24,7 +24,14 @@ public class Library {
     EmployeeDirectory employeDirectory;
     RentalRequestDirectory rentalrequest;
     
-    
+    public Library() {
+        this.bookDirectory = new BookDirectory();
+        this.authorDirectory = new AuthorDirectory();
+        this.generalDirectory = new GeneralDirectory();
+        this.genreDirectory = new GenreDirectory();
+        this.employeDirectory = new EmployeeDirectory();
+        this.rentalrequest = new RentalRequestDirectory();
+    }
 
     public Library(String buildingNo) {
         this.buildingNo = buildingNo;

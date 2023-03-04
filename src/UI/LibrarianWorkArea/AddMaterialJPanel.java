@@ -54,11 +54,8 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
         typeOfBindingField = new javax.swing.JTextField();
         authorField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        serialNumberField = new javax.swing.JTextField();
         nameField = new javax.swing.JTextField();
         registeredDateField = new javax.swing.JTextField();
         companyNameField = new javax.swing.JTextField();
@@ -66,7 +63,6 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
         genreTypeField = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox = new javax.swing.JComboBox<>();
         genreDropdown = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -104,18 +100,11 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
         jLabel6.setText("No. Of Pages");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
-        jLabel7.setText("serialNumber");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
-
         nameLabel.setText("name");
         add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
         jLabel9.setText("registeredDate");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, -1, -1));
-
-        jLabel10.setText("Avaliability");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
-        add(serialNumberField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 100, -1));
         add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 100, -1));
         add(registeredDateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 110, -1));
         add(companyNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 110, -1));
@@ -127,9 +116,6 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
 
         jLabel11.setText("Issue Type");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
-
-        jComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
-        add(jComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
 
         add(genreDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
 
@@ -170,11 +156,12 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String registeredDate =registeredDateField.getText();
         String name =nameField.getText();
-        String avaliability =(String) jComboBox.getSelectedItem(); 
+ 
         String companyName =companyNameField.getText();
         String issueType =issueTypeField.getText();
+
         
-        branch.getLibrary().getGeneralDirectory().createMagazine( name, Integer.valueOf(registeredDate),Boolean.valueOf(avaliability), companyName, issueType);
+        branch.getLibrary().getGeneralDirectory().createMagazine( name, Integer.valueOf(registeredDate), companyName, issueType);
         JOptionPane.showMessageDialog(null, "Magazine Added");
     }//GEN-LAST:event_addMagazineBtnActionPerformed
 
@@ -200,14 +187,14 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
 
         String registeredDate =registeredDateField.getText();
         String name =nameField.getText();
-        String avaliability =(String) jComboBox.getSelectedItem();
+
         String noOfPages =noOfPagesField.getText();
         String language =languageField.getText();
         String typeOfBinding =typeOfBindingField.getText();
         Author author=(Author) authorDropdown.getSelectedItem();
         Genre genretype= (Genre) genreDropdown.getSelectedItem();
 
-        branch.getLibrary().getBookDirectory().createBook(name, Integer.valueOf(registeredDate), Boolean.valueOf(avaliability),Integer.valueOf( noOfPages), language, typeOfBinding, author, genretype);
+        branch.getLibrary().getBookDirectory().createBook(name, Integer.valueOf(registeredDate),Integer.valueOf( noOfPages), language, typeOfBinding, author, genretype);
 
         JOptionPane.showMessageDialog(null, "Book Added");
     }//GEN-LAST:event_addBookBtnActionPerformed
@@ -239,9 +226,7 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox genreDropdown;
     private javax.swing.JTextField genreTypeField;
     private javax.swing.JTextField issueTypeField;
-    private javax.swing.JComboBox<String> jComboBox;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -249,7 +234,6 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField languageField;
@@ -257,7 +241,6 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField noOfPagesField;
     private javax.swing.JTextField registeredDateField;
-    private javax.swing.JTextField serialNumberField;
     private javax.swing.JTextField typeOfBindingField;
     // End of variables declaration//GEN-END:variables
 }

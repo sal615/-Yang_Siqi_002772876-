@@ -29,8 +29,8 @@ public class GeneralDirectory {
         this.magazineList = magazineList;
     }
     
-    public Magazine createMagazine( String name, int registeredDate, boolean isAvailablityFlag,String companyName, String issueType) {
-        Magazine magazine = new Magazine(name, registeredDate, isAvailablityFlag,companyName, issueType);
+    public Magazine createMagazine( String name, int registeredDate, String companyName, String issueType) {
+        Magazine magazine = new Magazine(name, registeredDate, companyName, issueType);
         
         this.magazineList.add(magazine);
         return magazine;

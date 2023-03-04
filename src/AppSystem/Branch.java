@@ -39,7 +39,7 @@ public class Branch {
     }
 
     public Library getLibrary() {
-        return library;
+        return this.library;
     }
 
     public void setLibrary(Library library) {
@@ -54,8 +54,8 @@ public class Branch {
     
     
     public Library createLibrary(String buildingNo) {
-        Library library = new Library(buildingNo);
-        return library;
+        this.library = new Library(buildingNo);
+        return this.library;
     }  
      
     

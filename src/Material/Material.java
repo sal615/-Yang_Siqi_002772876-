@@ -17,11 +17,14 @@ public class Material {
     int registeredDate;
     boolean isAvailablityFlag;
 
-    public Material(String name, int registeredDate, boolean isAvailablityFlag) {
-        this.serialNumber = "user" + this.counter++;
+    public Material() {
+        
+    }
+    public Material(String name, int registeredDate) {
+        this.serialNumber = "serial" + this.counter++;
         this.name = name;
         this.registeredDate = registeredDate;
-        this.isAvailablityFlag = isAvailablityFlag;
+        this.isAvailablityFlag = true;
     }
 
     public static int getCounter() {
@@ -65,7 +68,12 @@ public class Material {
     public void setIsAvailablityFlag(boolean isAvailablityFlag) {
         this.isAvailablityFlag = isAvailablityFlag;
     }
-    
+
+        
+    @Override
+    public String toString() {
+        return serialNumber;
+    }
     
     
 }

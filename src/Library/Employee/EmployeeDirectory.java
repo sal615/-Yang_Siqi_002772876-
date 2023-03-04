@@ -46,6 +46,16 @@ public class EmployeeDirectory {
         return null;
     }
     
+    public boolean checkEmployeeUnique(String id){
+        for (Employee e: this.employeeList){
+            if(e.getId()==id){
+                return false;            
+            }
+        }
+        
+        return true;
+    } 
+    
     
 
 }

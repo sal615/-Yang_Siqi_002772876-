@@ -91,14 +91,14 @@ public class MainJFrame extends javax.swing.JFrame {
         if(this.appSystem.getSystemAdminAccount().authenticateUser(passwordField.getText(), passwordField.getText()) != null) {
             UserAccount user = this.appSystem.getSystemAdminAccount().authenticateUser(passwordField.getText(), passwordField.getText());
             foundUser = true;
-            user.getRole().createWorkArea(appSystem, branch, useraccount);
+            user.getRole().createWorkArea(appSystem, branch, user);
             this.setVisible(false);
         } else {
             for(Branch branch: this.appSystem.getBranches()) {
                 if(branch.getBranchuseraccountDirectory().authenticateUser(passwordField.getText(), userNameField.getText()) != null) {
                     UserAccount branchUser = branch.getBranchuseraccountDirectory().authenticateUser(passwordField.getText(), userNameField.getText());
                     foundUser = true;
-                    branchUser.getRole().createWorkArea(appSystem, branch, useraccount);
+                    branchUser.getRole().createWorkArea(appSystem, branch, branchUser);
                     this.setVisible(false);
                 }
             }

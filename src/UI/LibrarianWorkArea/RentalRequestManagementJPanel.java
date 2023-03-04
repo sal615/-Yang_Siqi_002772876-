@@ -6,7 +6,14 @@ package UI.LibrarianWorkArea;
 
 import AppSystem.ApplicationSystem;
 import AppSystem.Branch;
+import Customer.Customer;
+import Library.Book.Book;
+import Library.General.Magazine;
+import Library.Library;
+import RentalService.RentalRequest;
 import UserAccount.UserAccount;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,6 +23,11 @@ import javax.swing.table.DefaultTableModel;
 public class RentalRequestManagementJPanel extends javax.swing.JPanel {
     private UserAccount useraccount;
     private ApplicationSystem appSystem;
+    DefaultTableModel historytableModel;
+    private Library branchlibrary;
+    private Book book; 
+    private Magazine magazine;
+    private RentalRequest rr;
     /**
      * Creates new form RentalRequestManagement
      */
@@ -29,8 +41,11 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
 
         this.appSystem = appSystem;
         this.useraccount = useraccount;
+        this.branchlibrary = branch.getLibrary();
 
-        
+        this.historytableModel=(DefaultTableModel)rentalHistoryTable.getModel();
+
+        displayHistory();
         
 
     }    
@@ -45,42 +60,55 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox();
-        assignAgentBtn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        rentalHistoryTable = new javax.swing.JTable();
+        accepteBtn = new javax.swing.JButton();
+        rejectBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        statusComboBox = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        rentalHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "OrderID", "Customer", "Delivery Man"
+                "ID", "Status", "Price", "Rent Duration", "book", "magazin"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
+        ));
+        jScrollPane2.setViewportView(rentalHistoryTable);
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable1);
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 530, 160));
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, -1, 238));
-
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 210, 50));
-
-        assignAgentBtn.setText("ASSIGN");
-        assignAgentBtn.addActionListener(new java.awt.event.ActionListener() {
+        accepteBtn.setText("Accepte");
+        accepteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignAgentBtnActionPerformed(evt);
+                accepteBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(assignAgentBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 80, 40));
+        jPanel1.add(accepteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
+
+        rejectBtn.setText("Reject");
+        rejectBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rejectBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rejectBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
+
+        jButton1.setText("View");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
+
+        statusComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Approve", "Reject" }));
+        jPanel1.add(statusComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, -1, -1));
+
+        jLabel1.setText("Status:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 80, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -104,25 +132,70 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void assignAgentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignAgentBtnActionPerformed
+    private void accepteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accepteBtnActionPerformed
         // TODO add your handling code here:
-//        DeliveryAgent agent = (DeliveryAgent) jComboBox1.getSelectedItem();
-//
-//        int selectedRow = jTable1.getSelectedRow();
-//
-//        Order o = (Order) jTable1.getValueAt(selectedRow, 0);
-//        o.setAgent(agent);
-//        agent.addDeliveryOrder(o);
-//
-//        populate();
-    }//GEN-LAST:event_assignAgentBtnActionPerformed
 
+        int selectedRow = rentalHistoryTable.getSelectedRow();
+        if(selectedRow >= 0) {
+           rr.setStatus((String) statusComboBox.getSelectedItem());
+           if(statusComboBox.getSelectedItem().equals("Approve")){
+               book.setIsAvailablityFlag(false);
+               magazine.setIsAvailablityFlag(false);
+            } 
+        }
+        displayHistory();
+      
+    }//GEN-LAST:event_accepteBtnActionPerformed
+
+    private void rejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = rentalHistoryTable.getSelectedRow();
+        if(selectedRow >= 0) {
+           rr.setStatus((String) statusComboBox.getSelectedItem());
+           if(statusComboBox.getSelectedItem().equals("Reject")){
+               book.setIsAvailablityFlag(true);
+               magazine.setIsAvailablityFlag(true);
+           }   
+        }
+        displayHistory();
+        
+        
+    }//GEN-LAST:event_rejectBtnActionPerformed
+    public void displayHistory(){
+        for(Customer c: this.appSystem.getCustomerDirectory().getCustomerList()) {
+        ArrayList<RentalRequest> rentalrequests= c.getRentalrequest();
+        
+        if(rentalrequests.size()>0){
+                       
+            historytableModel.setRowCount(0);
+            for (RentalRequest rr:rentalrequests){
+               if(rr.getLib().equals(this.branchlibrary)) {
+                Object row[] = new Object[6];
+                row[0] = rr.getID();
+                row[1] = rr.getStatus();
+                row[2]= rr.getPrice();
+                row[3]= rr.getDuration();
+                row[4] = rr.getBook();
+                row[5] = rr.getMagazine();
+                
+                historytableModel.addRow(row);
+                
+              }
+            }
+ 
+            }
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton assignAgentBtn;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton accepteBtn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton rejectBtn;
+    private javax.swing.JTable rentalHistoryTable;
+    private javax.swing.JComboBox statusComboBox;
     // End of variables declaration//GEN-END:variables
 }

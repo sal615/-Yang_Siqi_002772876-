@@ -26,6 +26,16 @@ public class RentalRequest {
     Customer customer;
     Library lib;
     
+    public RentalRequest() {
+        this.count++;     
+        this.rentalID = "ORDERNO"+this.count;
+        this.price = 1;
+        this.status = "Created";
+        this.book = new Book();
+        this.magazine = new Magazine();
+        this.customer = new Customer();
+        this.lib = new Library();
+    }
 
     public RentalRequest( int duration, Book book, Magazine magazine, Customer customer, Library lib) {
         this.count++;     
@@ -90,6 +100,15 @@ public class RentalRequest {
     public void setMagazine(Magazine magazine) {
         this.magazine = magazine;
     }
-            
+
+    public Library getLib() {
+        return lib;
+    }
+
+    public void setLib(Library lib) {
+        this.lib = lib;
+    }
+      
+    
     
 }

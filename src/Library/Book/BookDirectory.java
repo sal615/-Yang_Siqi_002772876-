@@ -31,12 +31,14 @@ public class BookDirectory {
         this.bookList = bookList;
     }
     
-    public Book createBook(String name, int registeredDate, boolean isAvailablityFlag,int noOfPages, String language, String typeOfBinding, Author author, Genre genre) {
-        Book book = new Book( name, registeredDate, isAvailablityFlag,noOfPages, language, typeOfBinding, author, genre);
+    public Book createBook(String name, int registeredDate, int noOfPages, String language, String typeOfBinding, Author author, Genre genre) {
+        Book book = new Book( name, registeredDate, noOfPages, language, typeOfBinding, author, genre);
         
         this.bookList.add(book);
         return book;
     }
+    
+    
     
     
 }

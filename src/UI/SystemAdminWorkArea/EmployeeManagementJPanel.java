@@ -9,6 +9,7 @@ import AppSystem.ApplicationSystem;
 import AppSystem.Branch;
 import Customer.Customer;
 import Customer.CustomerDirectory;
+import Library.Employee.EmployeeDirectory;
 import Library.Library;
 import Role.BranchAdminRole;
 import Role.LibrarianRole;
@@ -43,6 +44,7 @@ public class EmployeeManagementJPanel extends javax.swing.JPanel {
         
         populateDesignation();   
         populateBranchDropdown();
+        populate();
         
     }
     
@@ -166,14 +168,18 @@ public class EmployeeManagementJPanel extends javax.swing.JPanel {
         if(foundDuplicate == false) {
             Library lib= (Library) jComboBox1.getSelectedItem(); 
             Branch branch = this.appSystem.getBranchforLib(lib);
-            
-            if(designationComboBox.getSelectedItem().equals("branch manager") ){
+
+ 
+            //boolean i=this.branch.getLibrary().getEmployeDirectory().checkEmployeeUnique(Integer.valueOf(user.getAccountId())); 
+            if(designationComboBox.getSelectedItem().equals("Branch Manager") ){
             
             UserAccount user= branch.getBranchuseraccountDirectory().createUserAccount(fieldusername.getText(), fieldPassword.getText(), new BranchAdminRole());
             lib.getEmployeDirectory().createEmployee(Integer.valueOf(fieldexperience.getText()), (String) designationComboBox.getSelectedItem(), nameField.getText(), user.getAccountId());
+   
+            
             }else{
             UserAccount userac=branch.getBranchuseraccountDirectory().createUserAccount(fieldusername.getText(), fieldPassword.getText(), new LibrarianRole());
-                lib.getEmployeDirectory().createEmployee(Integer.valueOf(fieldexperience.getText()), (String) designationComboBox.getSelectedItem(), nameField.getText(), userac.getAccountId());
+            lib.getEmployeDirectory().createEmployee(Integer.valueOf(fieldexperience.getText()), (String) designationComboBox.getSelectedItem(), nameField.getText(), userac.getAccountId());
             }
 
             populate();

@@ -47,13 +47,17 @@ public class Customer extends Profile {
     }
     
     public RentalRequest createRentalrequest( int duration, Book book, Magazine magazine, Customer customer, Library lib){
-        RentalRequest rentalrequest = new RentalRequest(  duration, book,magazine,customer,lib);
-        return rentalrequest;
+        RentalRequest rental = new RentalRequest();
+        rental.setBook(book);
+        rental.setLib(lib);
+        rental.setMagazine(magazine);
+        rental.setDuration(duration);
+        this.rentalrequest.add(rental);
+        return rental;
+        
     }
     
-    public void addRentalrequest(RentalRequest rentalRequest) {
-        this.rentalrequest.add(rentalRequest);
-    }
+
      
 
 

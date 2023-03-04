@@ -6,8 +6,15 @@ package UI.BranchManagerWorkArea;
 
 import AppSystem.ApplicationSystem;
 import AppSystem.Branch;
+import Customer.Customer;
+import Library.Book.Book;
+import Library.General.Magazine;
+import Library.Library;
+import RentalService.RentalRequest;
 import UI.MainJFrame;
 import UserAccount.UserAccount;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +24,14 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
     private  ApplicationSystem appSystem;   
     private  Branch branch;
     private  UserAccount useraccount;
+    private Library library;
+    private Book book; 
+    private Magazine magazine;
+    private RentalRequest rentalrequest;
+
+    DefaultTableModel booktableModel;
+    DefaultTableModel magazinetableModel;
+    DefaultTableModel historytableModel;
     /**
      * Creates new form BranchManagerJFrame
      */
@@ -30,6 +45,9 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
         this.useraccount = useraccount;
         
         branchName.setText(branch.getName());
+        totalRevenueField.setText(branch.totalRevenue());
+        
+        displayBookInfo();
     }    
 
     /**
@@ -44,8 +62,19 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         backBtn = new javax.swing.JButton();
         branchName = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        bookTable = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        magazinelTable = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        rentalHistoryTable = new javax.swing.JTable();
+        totalRevenueField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backBtn.setText("BACK");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -53,32 +82,82 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
                 backBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         branchName.setText("jLabel1");
+        jPanel1.add(branchName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(backBtn))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(branchName)))
-                .addContainerGap(198, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
-                .addComponent(branchName)
-                .addGap(57, 57, 57)
-                .addComponent(backBtn)
-                .addGap(99, 99, 99))
-        );
+        bookTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Branch", "Library", "Serieal Number", "Book Name", "Avaliablity"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        bookTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(bookTable);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 490, 120));
+
+        magazinelTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Branch", "Library", "Serieal Number", "Magazine Name", "Avaliablity"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        magazinelTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                magazinelTableMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(magazinelTable);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 500, 120));
+
+        rentalHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Status", "Price", "Rent Duration", "book", "magazin"
+            }
+        ));
+        jScrollPane2.setViewportView(rentalHistoryTable);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 540, 130));
+        jPanel1.add(totalRevenueField, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 390, 100, -1));
+
+        jLabel1.setText("Total Revenue:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, -1));
+
+        jLabel2.setText("Branch Name:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -91,6 +170,68 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
         new MainJFrame(appSystem, branch, useraccount);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void bookTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookTableMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = bookTable.getSelectedRow();
+        if(selectedRow >= 0) {
+            this.book= (Book) booktableModel.getValueAt(selectedRow, 2);
+            this.library=(Library) booktableModel.getValueAt(selectedRow, 1);
+        }
+    }//GEN-LAST:event_bookTableMouseClicked
+
+    private void magazinelTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_magazinelTableMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = magazinelTable.getSelectedRow();
+        if(selectedRow >= 0) {
+            this.magazine=  (Magazine) magazinelTable.getValueAt(selectedRow, 2);
+            this.library=(Library) magazinelTable.getValueAt(selectedRow, 1);
+        }
+    }//GEN-LAST:event_magazinelTableMouseClicked
+    public void displayBookInfo() {
+       ArrayList<Branch> branches = this.appSystem.getBranches();
+        
+        if(branches.size()>0){
+            booktableModel.setRowCount(0);
+            for (Branch br : branches){
+                for(Book b:br.getLibrary().getBookDirectory().getBookList()){
+                    Object row[] = new Object[5];
+                    row[0] = br;
+                    row[1] = br.getLibrary();
+                    row[2]= b;
+                    row[3] = b.getName();
+                    row[4] = b.isIsAvailablityFlag();
+        
+                    booktableModel.addRow(row);
+                }
+            }
+        }
+    }
+    
+    public void displayHistory(){
+        for(Customer c: this.appSystem.getCustomerDirectory().getCustomerList()) {
+        ArrayList<RentalRequest> rentalrequests= c.getRentalrequest();
+        
+        if(rentalrequests.size()>0){
+                       
+            historytableModel.setRowCount(0);
+            for (RentalRequest rr:rentalrequests){
+               if(rr.getLib().equals(this.branch.getLibrary())) {
+                Object row[] = new Object[6];
+                row[0] = rr.getID();
+                row[1] = rr.getStatus();
+                row[2]= rr.getPrice();
+                row[3]= rr.getDuration();
+                row[4] = rr.getBook();
+                row[5] = rr.getMagazine();
+                
+                historytableModel.addRow(row);
+                
+              }
+            }
+ 
+            }
+        }
+    }        
     /**
      * @param args the command line arguments
      */
@@ -128,7 +269,16 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JTable bookTable;
     private javax.swing.JLabel branchName;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable magazinelTable;
+    private javax.swing.JTable rentalHistoryTable;
+    private javax.swing.JTextField totalRevenueField;
     // End of variables declaration//GEN-END:variables
 }
