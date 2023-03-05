@@ -6,7 +6,10 @@ package AppSystem;
 
 import UserAccount.UserAccountDirectory;
 import Customer.CustomerDirectory;
+import Library.Book.Book;
+import Library.General.Magazine;
 import Library.Library;
+import Material.Material;
 import Role.SystemAdminRole;
 import java.util.ArrayList;
 
@@ -83,13 +86,27 @@ public class ApplicationSystem {
                return br;
            }
        } return null;
-    }    
+    } 
+    
+    public Branch findBranchByMaterial(Material material){
+        for (Branch br: branches){
+            for(Book b: br.getLibrary().getBookDirectory().getBookList()){
+                if(b==material){
+                    return br;
+                }
+            }
+            for (Magazine m: br.getLibrary().getGeneralDirectory().getMagazineList()){
+                if(m==material){
+                    return br;
+                }
+            }
+           
+        }
+        return null;
+        
+    }
+    
     
 
     
-    // admin amdin for the role systemadmin
-//    public Boolean checkAdminCredentials(String username, String password) {
-//        // check if the username and password is equal to the systemadminaccount object's username and password
-//        // return true;
-//    }
 }

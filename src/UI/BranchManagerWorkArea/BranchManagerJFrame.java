@@ -44,10 +44,16 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
         this.branch = branch;
         this.useraccount = useraccount;
         
+        this.booktableModel = (DefaultTableModel) bookTable.getModel();
+        this.magazinetableModel = (DefaultTableModel) magazinelTable.getModel();
+        this.historytableModel=(DefaultTableModel)rentalHistoryTable.getModel();
+        
         branchName.setText(branch.getName());
-        totalRevenueField.setText(branch.totalRevenue());
+        totalRevenueField.setText(String.valueOf(branch.totalRevenue()));
         
         displayBookInfo();
+        displayHistory();
+        displayMagazineInfo();
     }    
 
     /**
@@ -62,15 +68,15 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         backBtn = new javax.swing.JButton();
         branchName = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        bookTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         magazinelTable = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        rentalHistoryTable = new javax.swing.JTable();
         totalRevenueField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        bookTable = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        rentalHistoryTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,31 +92,6 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
 
         branchName.setText("jLabel1");
         jPanel1.add(branchName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
-
-        bookTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Branch", "Library", "Serieal Number", "Book Name", "Avaliablity"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        bookTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bookTableMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(bookTable);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 490, 120));
 
         magazinelTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,6 +117,38 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
         jScrollPane3.setViewportView(magazinelTable);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 500, 120));
+        jPanel1.add(totalRevenueField, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 390, 100, -1));
+
+        jLabel1.setText("Total Revenue:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, -1));
+
+        jLabel2.setText("Branch Name:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
+
+        bookTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Branch", "Library", "Serieal Number", "Book Name", "Avaliablity"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        bookTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(bookTable);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 460, 150));
 
         rentalHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,17 +160,23 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
             new String [] {
                 "ID", "Status", "Price", "Rent Duration", "book", "magazin"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        rentalHistoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rentalHistoryTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(rentalHistoryTable);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 540, 130));
-        jPanel1.add(totalRevenueField, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 390, 100, -1));
-
-        jLabel1.setText("Total Revenue:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, -1));
-
-        jLabel2.setText("Branch Name:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 530, 160));
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -170,6 +189,15 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
         new MainJFrame(appSystem, branch, useraccount);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void magazinelTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_magazinelTableMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = magazinelTable.getSelectedRow();
+        if(selectedRow >= 0) {
+            this.magazine=  (Magazine) magazinelTable.getValueAt(selectedRow, 2);
+            this.library=(Library) magazinelTable.getValueAt(selectedRow, 1);
+        }
+    }//GEN-LAST:event_magazinelTableMouseClicked
+
     private void bookTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookTableMouseClicked
         // TODO add your handling code here:
         int selectedRow = bookTable.getSelectedRow();
@@ -179,31 +207,47 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bookTableMouseClicked
 
-    private void magazinelTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_magazinelTableMouseClicked
+    private void rentalHistoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rentalHistoryTableMouseClicked
         // TODO add your handling code here:
-        int selectedRow = magazinelTable.getSelectedRow();
-        if(selectedRow >= 0) {
-            this.magazine=  (Magazine) magazinelTable.getValueAt(selectedRow, 2);
-            this.library=(Library) magazinelTable.getValueAt(selectedRow, 1);
-        }
-    }//GEN-LAST:event_magazinelTableMouseClicked
+
+    }//GEN-LAST:event_rentalHistoryTableMouseClicked
     public void displayBookInfo() {
-       ArrayList<Branch> branches = this.appSystem.getBranches();
-        
-        if(branches.size()>0){
+
+        if(branch.getLibrary().getBookDirectory().getBookList().size()>0){
             booktableModel.setRowCount(0);
-            for (Branch br : branches){
-                for(Book b:br.getLibrary().getBookDirectory().getBookList()){
+
+                for(Book b:branch.getLibrary().getBookDirectory().getBookList()){
                     Object row[] = new Object[5];
-                    row[0] = br;
-                    row[1] = br.getLibrary();
+                    row[0] = branch;
+                    row[1] = branch.getLibrary();
                     row[2]= b;
                     row[3] = b.getName();
                     row[4] = b.isIsAvailablityFlag();
         
                     booktableModel.addRow(row);
                 }
-            }
+               
+        } else {
+            System.out.print("");
+        }
+    }
+    public void displayMagazineInfo() {
+        
+        if(branch.getLibrary().getGeneralDirectory().getMagazineList().size()>0){
+            magazinetableModel.setRowCount(0);
+
+                for (Magazine m:branch.getLibrary().getGeneralDirectory().getMagazineList()){
+                    Object row[] = new Object[5];
+                    row[0] = branch;
+                    row[1] = branch.getLibrary();
+                    row[2]= m;
+                    row[3] = m.getName();
+                    row[4] = m.isIsAvailablityFlag();
+
+                    magazinetableModel.addRow(row);
+                }          
+        } else {
+            System.out.print("");
         }
     }
     
@@ -217,7 +261,7 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
             for (RentalRequest rr:rentalrequests){
                if(rr.getLib().equals(this.branch.getLibrary())) {
                 Object row[] = new Object[6];
-                row[0] = rr.getID();
+                row[0] = rr;
                 row[1] = rr.getStatus();
                 row[2]= rr.getPrice();
                 row[3]= rr.getDuration();
@@ -231,7 +275,10 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
  
             }
         }
-    }        
+    }    
+    
+
+    
     /**
      * @param args the command line arguments
      */

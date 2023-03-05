@@ -80,7 +80,20 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
             new String [] {
                 "ID", "Status", "Price", "Rent Duration", "book", "magazin"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        rentalHistoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rentalHistoryTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(rentalHistoryTable);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 530, 160));
@@ -136,11 +149,13 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         int selectedRow = rentalHistoryTable.getSelectedRow();
+        RentalRequest rr= (RentalRequest) rentalHistoryTable.getValueAt(selectedRow, 0);
         if(selectedRow >= 0) {
            rr.setStatus((String) statusComboBox.getSelectedItem());
            if(statusComboBox.getSelectedItem().equals("Approve")){
-               book.setIsAvailablityFlag(false);
-               magazine.setIsAvailablityFlag(false);
+               //book.setIsAvailablityFlag(false);
+               rr.getMagazine().setIsAvailablityFlag(false);
+               //magazine.setIsAvailablityFlag(false);
             } 
         }
         displayHistory();
@@ -150,17 +165,25 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
     private void rejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBtnActionPerformed
         // TODO add your handling code here:
         int selectedRow = rentalHistoryTable.getSelectedRow();
+        RentalRequest rr= (RentalRequest) rentalHistoryTable.getValueAt(selectedRow, 0);
         if(selectedRow >= 0) {
            rr.setStatus((String) statusComboBox.getSelectedItem());
            if(statusComboBox.getSelectedItem().equals("Reject")){
-               book.setIsAvailablityFlag(true);
-               magazine.setIsAvailablityFlag(true);
+               //book.setIsAvailablityFlag(true); rr.getbook==null
+               rr.getMagazine().setIsAvailablityFlag(true);
+
            }   
         }
         displayHistory();
         
         
     }//GEN-LAST:event_rejectBtnActionPerformed
+
+    private void rentalHistoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rentalHistoryTableMouseClicked
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_rentalHistoryTableMouseClicked
     public void displayHistory(){
         for(Customer c: this.appSystem.getCustomerDirectory().getCustomerList()) {
         ArrayList<RentalRequest> rentalrequests= c.getRentalrequest();
@@ -171,7 +194,7 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
             for (RentalRequest rr:rentalrequests){
                if(rr.getLib().equals(this.branchlibrary)) {
                 Object row[] = new Object[6];
-                row[0] = rr.getID();
+                row[0] = rr;
                 row[1] = rr.getStatus();
                 row[2]= rr.getPrice();
                 row[3]= rr.getDuration();

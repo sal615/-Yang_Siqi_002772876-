@@ -164,6 +164,7 @@ public class EmployeeManagementJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Sorry credentials are taken.");
                 break;
             }
+            
         }
         if(foundDuplicate == false) {
             Library lib= (Library) jComboBox1.getSelectedItem(); 

@@ -6,6 +6,7 @@ package AppSystem;
 
 import UserAccount.UserAccountDirectory;
 import Library.Library;
+import RentalService.RentalRequest;
 import java.util.ArrayList;
 
 /**
@@ -56,7 +57,20 @@ public class Branch {
     public Library createLibrary(String buildingNo) {
         this.library = new Library(buildingNo);
         return this.library;
-    }  
+    }
+    
+    public int totalRevenue(){
+        int totalRevenue =0;
+        for(RentalRequest rr:library.getRentalrequest().getRentalRequestList()){
+           
+            if(rr.getStatus().equals("Approve")||rr.getStatus().equals("Return")){
+                totalRevenue += rr.getPrice();
+            }
+        }
+        return totalRevenue;
+    }
+   
+
      
     
     @Override

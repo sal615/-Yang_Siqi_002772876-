@@ -50,6 +50,7 @@ public class Customer extends Profile {
         RentalRequest rental = new RentalRequest();
         rental.setBook(book);
         rental.setLib(lib);
+        lib.getRentalrequest().getRentalRequestList().add(rental);
         rental.setMagazine(magazine);
         rental.setDuration(duration);
         this.rentalrequest.add(rental);

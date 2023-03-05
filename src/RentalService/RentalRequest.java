@@ -108,7 +108,11 @@ public class RentalRequest {
     public void setLib(Library lib) {
         this.lib = lib;
     }
-      
+    
+     @Override
+    public String toString() {
+        return rentalID;
+    }
     
     
 }

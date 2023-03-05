@@ -82,7 +82,7 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
                 addMagazineBtnActionPerformed(evt);
             }
         });
-        add(addMagazineBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, -1, -1));
+        add(addMagazineBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 340, -1, -1));
 
         jLabel3.setText("GenreType");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, -1));
@@ -93,9 +93,9 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
         jLabel5.setText("author");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, -1, -1));
         add(noOfPagesField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 110, -1));
-        add(languageField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 110, 20));
+        add(languageField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 110, -1));
         add(typeOfBindingField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 110, -1));
-        add(authorField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 80, -1));
+        add(authorField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, 100, -1));
 
         jLabel6.setText("No. Of Pages");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
@@ -104,28 +104,28 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
         add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
         jLabel9.setText("registeredDate");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, -1, -1));
-        add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 100, -1));
-        add(registeredDateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 110, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        add(nameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 110, -1));
+        add(registeredDateField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 110, -1));
         add(companyNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 110, -1));
-        add(issueTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 120, -1));
-        add(genreTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 70, 80, -1));
+        add(issueTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 110, -1));
+        add(genreTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 100, -1));
 
         jLabel8.setText("company Name");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
 
         jLabel11.setText("Issue Type");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, -1));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, -1, -1));
 
-        add(genreDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
+        add(genreDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 120, -1));
 
         jLabel12.setText("author");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, -1, -1));
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
 
         jLabel13.setText("GenreType");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 70, -1, -1));
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, -1, -1));
 
-        add(authorDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, -1, -1));
+        add(authorDropdown, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 120, -1));
 
         addAuthorBtn.setText("Add Author");
         addAuthorBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +133,7 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
                 addAuthorBtnActionPerformed(evt);
             }
         });
-        add(addAuthorBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, -1));
+        add(addAuthorBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, -1));
 
         addGenreBtn.setText("Add Genre");
         addGenreBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +141,7 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
                 addGenreBtnActionPerformed(evt);
             }
         });
-        add(addGenreBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 70, -1, -1));
+        add(addGenreBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, -1, -1));
 
         addBookBtn.setText("Add Book");
         addBookBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -149,20 +149,24 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
                 addBookBtnActionPerformed(evt);
             }
         });
-        add(addBookBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, -1, -1));
+        add(addBookBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void addMagazineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMagazineBtnActionPerformed
         // TODO add your handling code here:
-        String registeredDate =registeredDateField.getText();
-        String name =nameField.getText();
- 
-        String companyName =companyNameField.getText();
-        String issueType =issueTypeField.getText();
+        if(registeredDateField.getText().equals("")||nameField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Pleae fill Date and Name to add magazine");  
+        } else {        
+            String registeredDate =registeredDateField.getText();
+            String name =nameField.getText();
 
-        
-        branch.getLibrary().getGeneralDirectory().createMagazine( name, Integer.valueOf(registeredDate), companyName, issueType);
-        JOptionPane.showMessageDialog(null, "Magazine Added");
+            String companyName =companyNameField.getText();
+            String issueType =issueTypeField.getText();
+
+
+            branch.getLibrary().getGeneralDirectory().createMagazine( name, Integer.valueOf(registeredDate), companyName, issueType);
+            JOptionPane.showMessageDialog(null, "Magazine Added");
+        }
     }//GEN-LAST:event_addMagazineBtnActionPerformed
 
     private void addAuthorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAuthorBtnActionPerformed
@@ -184,19 +188,22 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
         // TODO add your handling code here:
+        if(registeredDateField.getText().equals("")||nameField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Pleae fill Date and Name to add book");  
+        } else {
+            String registeredDate =registeredDateField.getText();
+            String name =nameField.getText();
+            String noOfPages =noOfPagesField.getText();
+            String language =languageField.getText();
+            String typeOfBinding =typeOfBindingField.getText();
+            Author author=(Author) authorDropdown.getSelectedItem();
+            Genre genretype= (Genre) genreDropdown.getSelectedItem();
 
-        String registeredDate =registeredDateField.getText();
-        String name =nameField.getText();
+            branch.getLibrary().getBookDirectory().createBook(name, Integer.valueOf(registeredDate),Integer.valueOf( noOfPages), language, typeOfBinding, author, genretype);
 
-        String noOfPages =noOfPagesField.getText();
-        String language =languageField.getText();
-        String typeOfBinding =typeOfBindingField.getText();
-        Author author=(Author) authorDropdown.getSelectedItem();
-        Genre genretype= (Genre) genreDropdown.getSelectedItem();
-
-        branch.getLibrary().getBookDirectory().createBook(name, Integer.valueOf(registeredDate),Integer.valueOf( noOfPages), language, typeOfBinding, author, genretype);
-
-        JOptionPane.showMessageDialog(null, "Book Added");
+            JOptionPane.showMessageDialog(null, "Book Added");
+        }
+        
     }//GEN-LAST:event_addBookBtnActionPerformed
     public void populateAuthorDropdown(){
         ArrayList<Author> author = this.branch.getLibrary().getAuthorDirectory().getAuthorList();

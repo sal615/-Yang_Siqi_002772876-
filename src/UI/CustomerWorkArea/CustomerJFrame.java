@@ -51,6 +51,7 @@ public class CustomerJFrame extends javax.swing.JFrame {
        this.magazinetableModel = (DefaultTableModel) magazinelTable.getModel();
        this.historytableModel=(DefaultTableModel)rentalHistoryTable.getModel();
        this.c = this.appSystem.getCustomerDirectory().findById(this.useraccount.getAccountId());
+       this.library =library;
        displayBookInfo();
        displayMagazineInfo();
        displayHistory();
@@ -215,14 +216,31 @@ public class CustomerJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         // create order
+        //if
+        Branch branch=appSystem.findBranchByMaterial(magazine);
         String duration = rentDurationField.getText(); 
-        RentalRequest rr = c.createRentalrequest(Integer.valueOf(duration), this.book, this.magazine,c, this.library);
-        displayHistory(); 
-        displayMagazineInfo();
-        displayBookInfo();
-        this.book = null;
-        this.magazine = null;
-
+ 
+        
+        if(this.book.isIsAvailablityFlag() ){
+            RentalRequest rr = c.createRentalrequest(Integer.valueOf(duration), this.book, this.magazine,c, branch.getLibrary());
+            displayHistory(); 
+            displayMagazineInfo();
+            displayBookInfo();
+            this.book = null;
+            this.magazine = null;
+                }
+        else if(this.magazine.isIsAvailablityFlag()){
+            RentalRequest rr = c.createRentalrequest(Integer.valueOf(duration), this.book, this.magazine,c, branch.getLibrary());
+            displayHistory(); 
+            displayMagazineInfo();
+            displayBookInfo();
+            this.book = null;
+            this.magazine = null;
+        }
+        else{
+            showmessage
+            }
+        
     }//GEN-LAST:event_rentBtnActionPerformed
 
     private void bookTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookTableMouseClicked
