@@ -14,6 +14,8 @@ import RentalService.RentalRequest;
 import UI.MainJFrame;
 import UserAccount.UserAccount;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -79,6 +81,11 @@ public class CustomerJFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         magazinelTable = new javax.swing.JTable();
+        returnBtn = new javax.swing.JButton();
+        magazineSerialField = new javax.swing.JTextField();
+        bookSerialField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,6 +164,21 @@ public class CustomerJFrame extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(magazinelTable);
 
+        returnBtn.setText("Return");
+        returnBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnBtnActionPerformed(evt);
+            }
+        });
+
+        magazineSerialField.setEnabled(false);
+
+        bookSerialField.setEnabled(false);
+
+        jLabel2.setText("Magazine SerialNo.");
+
+        jLabel3.setText("Book SerialNo.");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -164,20 +186,27 @@ public class CustomerJFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(rentBtn))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rentDurationField, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rentDurationField, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                            .addComponent(bookSerialField)
+                            .addComponent(magazineSerialField)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(77, 77, 77)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(returnBtn)
+                            .addComponent(rentBtn))))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -190,15 +219,29 @@ public class CustomerJFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rentDurationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(27, 27, 27)
-                        .addComponent(rentBtn)))
+                            .addComponent(bookSerialField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(magazineSerialField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(rentDurationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)))
                 .addGap(28, 28, 28)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(rentBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(returnBtn)
+                        .addGap(70, 70, 70))))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -214,52 +257,103 @@ public class CustomerJFrame extends javax.swing.JFrame {
 
     private void rentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentBtnActionPerformed
         // TODO add your handling code here:
-
-        // create order
-        //if
-        Branch branch=appSystem.findBranchByMaterial(magazine);
-        String duration = rentDurationField.getText(); 
- 
         
-        if(this.book.isIsAvailablityFlag() ){
-            RentalRequest rr = c.createRentalrequest(Integer.valueOf(duration), this.book, this.magazine,c, branch.getLibrary());
-            displayHistory(); 
-            displayMagazineInfo();
-            displayBookInfo();
-            this.book = null;
-            this.magazine = null;
-                }
-        else if(this.magazine.isIsAvailablityFlag()){
-            RentalRequest rr = c.createRentalrequest(Integer.valueOf(duration), this.book, this.magazine,c, branch.getLibrary());
-            displayHistory(); 
-            displayMagazineInfo();
-            displayBookInfo();
-            this.book = null;
-            this.magazine = null;
+        
+        String bookserial = (bookSerialField.getText().isEmpty())?"N?A":bookSerialField.getText();
+        String magazineserial=(magazineSerialField.getText().isEmpty())?"N?A":magazineSerialField.getText();
+        String duration = rentDurationField.getText(); 
+        
+        if (!bookserial.equals("N/A")){
+           branch=this.appSystem.findBranchBySerial(bookserial);
+        }else{
+            branch=this.appSystem.findBranchBySerial(magazineserial);
         }
-        else{
-            showmessage
-            }
+        Library lib = branch.getLibrary();
+        
+        Book book =lib.getBookDirectory().findBookBySerial(bookserial);
+        Magazine magazine=lib.getGeneralDirectory().findMagazineBySerial(magazineserial);
+        
+        if(book !=null &&book.isIsAvailablityFlag()&& magazine==null){
+            RentalRequest rr = c.createRentalrequest(Integer.valueOf(duration), book, magazine,c, lib);
+            book.setIsAvailablityFlag(false);
+
+        }else if(book==null && magazine!=null &&magazine.isIsAvailablityFlag()){
+            RentalRequest rr = c.createRentalrequest(Integer.valueOf(duration), book, magazine,c, lib);
+            magazine.setIsAvailablityFlag(false);
+
+        }else if (book!=null&& book.isIsAvailablityFlag()&& magazine!=null && magazine.isIsAvailablityFlag()){
+            RentalRequest rr = c.createRentalrequest(Integer.valueOf(duration), book, magazine,c, lib);
+            book.setIsAvailablityFlag(false);
+            magazine.setIsAvailablityFlag(false);
+
+        }else{
+            JOptionPane.showMessageDialog(null, "Materiel unavaliable to borrow");
+        }
+        
+            displayHistory(); 
+            displayMagazineInfo();
+            displayBookInfo();
+//        Branch branch=appSystem.findBranchByMaterial(magazine);
+//        String duration = rentDurationField.getText(); 
+
+//        //this.book.isIsAvailablityFlag() &&this.book!= null&& this.magazine==null
+//        if(this.book.isIsAvailablityFlag() ){
+//            RentalRequest rr = c.createRentalrequest(Integer.valueOf(duration), this.book, this.magazine,c, branch.getLibrary());
+//            displayHistory(); 
+//            displayMagazineInfo();
+//            displayBookInfo();
+//            this.book = null;
+//            this.magazine = null;
+//            //this.magazine.isIsAvailablityFlag()&&this.book== null&& this.magazine!=null
+//        }else if(this.magazine.isIsAvailablityFlag()){
+//            RentalRequest rr = c.createRentalrequest(Integer.valueOf(duration), this.book, this.magazine,c, branch.getLibrary());
+//            displayHistory(); 
+//            displayMagazineInfo();
+//            displayBookInfo();
+//            this.book = null;
+//            this.magazine = null;
+//            this.magazine.setIsAvailablityFlag(false);
+//        }//this.book.isIsAvailablityFlag() &&this.magazine.isIsAvailablityFlag()&&this.book!= null&& this.magazine!=null
+//        else if(this.book.isIsAvailablityFlag() &&this.magazine.isIsAvailablityFlag()){
+//            RentalRequest rr = c.createRentalrequest(Integer.valueOf(duration), this.book, this.magazine,c, branch.getLibrary());
+//            displayHistory(); 
+//            displayMagazineInfo();
+//            displayBookInfo();
+//            this.book = null;
+//            this.magazine = null;
+//            this.book.setIsAvailablityFlag(false);
+//            this.magazine.setIsAvailablityFlag(false);
+//            }else{
+//            JOptionPane.showMessageDialog(null, "Materiel unavaliable to borrow");
+//        }
         
     }//GEN-LAST:event_rentBtnActionPerformed
 
     private void bookTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookTableMouseClicked
         // TODO add your handling code here:
         int selectedRow = bookTable.getSelectedRow();
-        if(selectedRow >= 0) {
-        this.book= (Book) booktableModel.getValueAt(selectedRow, 2);
-        this.library=(Library) booktableModel.getValueAt(selectedRow, 1);
-        }
+        this.bookSerialField=(JTextField) booktableModel.getValueAt(selectedRow, 2);
+        
+//        if(selectedRow >= 0) {
+//        this.book= (Book) booktableModel.getValueAt(selectedRow, 2);
+//        this.library=(Library) booktableModel.getValueAt(selectedRow, 1);
+//        }
     }//GEN-LAST:event_bookTableMouseClicked
 
     private void magazinelTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_magazinelTableMouseClicked
         // TODO add your handling code here:
         int selectedRow = magazinelTable.getSelectedRow();
-        if(selectedRow >= 0) {
-        this.magazine=  (Magazine) magazinelTable.getValueAt(selectedRow, 2);
-        this.library=(Library) magazinelTable.getValueAt(selectedRow, 1);
-        }
+        this.magazineSerialField=(JTextField) magazinelTable.getValueAt(selectedRow, 2);
+//        if(selectedRow >= 0) {
+//        this.magazine=  (Magazine) magazinelTable.getValueAt(selectedRow, 2);
+//        this.library=(Library) magazinelTable.getValueAt(selectedRow, 1);
+//        }
     }//GEN-LAST:event_magazinelTableMouseClicked
+
+    private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
+        // TODO add your handling code here:
+        //if select reject show  unable to select, only change allow to change approved 
+    }//GEN-LAST:event_returnBtnActionPerformed
     public void displayBookInfo() {
        ArrayList<Branch> branches = this.appSystem.getBranches();
         
@@ -364,16 +458,21 @@ public class CustomerJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField bookSerialField;
     private javax.swing.JTable bookTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextField magazineSerialField;
     private javax.swing.JTable magazinelTable;
     private javax.swing.JButton rentBtn;
     private javax.swing.JTextField rentDurationField;
     private javax.swing.JTable rentalHistoryTable;
+    private javax.swing.JButton returnBtn;
     // End of variables declaration//GEN-END:variables
 }

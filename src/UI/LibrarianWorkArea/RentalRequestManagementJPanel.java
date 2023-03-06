@@ -155,6 +155,7 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
            if(statusComboBox.getSelectedItem().equals("Approve")){
                //book.setIsAvailablityFlag(false);
                rr.getMagazine().setIsAvailablityFlag(false);
+               rr.getMagazine().setIsAvailablityFlag(false);
                //magazine.setIsAvailablityFlag(false);
             } 
         }
@@ -168,11 +169,14 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
         RentalRequest rr= (RentalRequest) rentalHistoryTable.getValueAt(selectedRow, 0);
         if(selectedRow >= 0) {
            rr.setStatus((String) statusComboBox.getSelectedItem());
-           if(statusComboBox.getSelectedItem().equals("Reject")){
+           if(statusComboBox.getSelectedItem().equals("Reject")&& rr.getBook()!=null){
                //book.setIsAvailablityFlag(true); rr.getbook==null
-               rr.getMagazine().setIsAvailablityFlag(true);
-
-           }   
+               rr.getBook().setIsAvailablityFlag(true);
+           } 
+           if(statusComboBox.getSelectedItem().equals("Reject")&& rr.getMagazine()!=null){
+               //book.setIsAvailablityFlag(true); rr.getbook==null
+               rr.getMagazine().setIsAvailablityFlag(true);      
+           }    
         }
         displayHistory();
         

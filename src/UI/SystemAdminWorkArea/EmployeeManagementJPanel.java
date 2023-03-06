@@ -211,7 +211,7 @@ public class EmployeeManagementJPanel extends javax.swing.JPanel {
             Object[] row = new Object[6];
             
             row[0] = br;
-            row[1] = br.getLibrary();
+            row[1] = br.getLibrary();                    
             row[2] = u.getAccountId();
             row[3] = br.getLibrary().getEmployeDirectory().getEmployeeId(u.getAccountId());
             row[4] =u.getUserName();

@@ -106,6 +106,24 @@ public class ApplicationSystem {
         
     }
     
+        public Branch findBranchBySerial(String serial){
+        for (Branch br: branches){
+            for(Book b: br.getLibrary().getBookDirectory().getBookList()){
+                if(b.getSerialNumber().equals(serial)){
+                    return br;
+                }
+            }
+            for (Magazine m: br.getLibrary().getGeneralDirectory().getMagazineList()){
+                if(m.getSerialNumber().equals(serial)){
+                    return br;
+                }
+            }
+           
+        }
+        return null;
+        
+    }
+    
     
 
     

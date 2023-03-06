@@ -34,6 +34,15 @@ public class GeneralDirectory {
         
         this.magazineList.add(magazine);
         return magazine;
+    }
+    
+    public Magazine findMagazineBySerial(String serial){
+        for(Magazine m: magazineList){
+            if(m.getSerialNumber().equals(serial)){
+                return m;
+            }
+        }return null;
+        
     }    
     
     

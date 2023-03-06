@@ -166,6 +166,12 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
 
             branch.getLibrary().getGeneralDirectory().createMagazine( name, Integer.valueOf(registeredDate), companyName, issueType);
             JOptionPane.showMessageDialog(null, "Magazine Added");
+            registeredDateField.setText("");
+            nameField.setText("");
+            companyNameField.setText("");
+            issueTypeField.setText("");
+            
+            
         }
     }//GEN-LAST:event_addMagazineBtnActionPerformed
 
@@ -175,6 +181,7 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
         branch.getLibrary().getAuthorDirectory().createAuthor(author);
         JOptionPane.showMessageDialog(null, "Author Added");        
         populateAuthorDropdown();
+        authorField.setText("");
         
     }//GEN-LAST:event_addAuthorBtnActionPerformed
 
@@ -184,12 +191,13 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
         branch.getLibrary().getGenreDirectory().createGenre(genre);
         JOptionPane.showMessageDialog(null, "Genre Added");
         populateGenreDropdown();
+        genreTypeField.setText("");
     }//GEN-LAST:event_addGenreBtnActionPerformed
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
         // TODO add your handling code here:
-        if(registeredDateField.getText().equals("")||nameField.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Pleae fill Date and Name to add book");  
+        if(registeredDateField.getText().equals("")||nameField.getText().equals("")||authorDropdown.getSelectedItem()==null||genreDropdown.getSelectedItem()==null){
+            JOptionPane.showMessageDialog(null, "Pleae fill Date and Name to add book or add Author or Genre");  
         } else {
             String registeredDate =registeredDateField.getText();
             String name =nameField.getText();
@@ -202,6 +210,12 @@ public class AddMaterialJPanel extends javax.swing.JPanel {
             branch.getLibrary().getBookDirectory().createBook(name, Integer.valueOf(registeredDate),Integer.valueOf( noOfPages), language, typeOfBinding, author, genretype);
 
             JOptionPane.showMessageDialog(null, "Book Added");
+            registeredDateField.setText("");
+            nameField.setText("");
+            typeOfBindingField.setText("");
+            languageField.setText("");
+            noOfPagesField.setText("");
+            
         }
         
     }//GEN-LAST:event_addBookBtnActionPerformed
