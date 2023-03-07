@@ -61,6 +61,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 153, 101));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         loginBtn.setText("Login");

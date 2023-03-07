@@ -80,6 +80,7 @@ public class EmployeeManagementJPanel extends javax.swing.JPanel {
         userNameLabel1 = new javax.swing.JLabel();
         nameField = new javax.swing.JTextField();
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(fieldusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 120, 30));
         jPanel1.add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 120, 30));
@@ -97,11 +98,11 @@ public class EmployeeManagementJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Branch", "Library", "ID", "Name", "Username", "Password"
+                "Branch", "Library", "ID", "Name", "Username", "Password", "Role"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -110,7 +111,7 @@ public class EmployeeManagementJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 430, 250));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, 570, 250));
 
         userNameLabel.setText("name");
         jPanel1.add(userNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
@@ -166,6 +167,11 @@ public class EmployeeManagementJPanel extends javax.swing.JPanel {
             }
             
         }
+        UserAccountDirectory ua = this.appSystem.getSystemAdminAccount();        
+        if(ua.accountExists(fieldusername.getText(), fieldPassword.getText())) {
+            foundDuplicate = true;
+            JOptionPane.showMessageDialog(null, "Sorry credentials are taken.");
+        }
         if(foundDuplicate == false) {
             Library lib= (Library) jComboBox1.getSelectedItem(); 
             Branch branch = this.appSystem.getBranchforLib(lib);
@@ -208,7 +214,7 @@ public class EmployeeManagementJPanel extends javax.swing.JPanel {
             for(UserAccount u: br.getBranchuseraccountDirectory().getUseraccountList()){
                 
    
-            Object[] row = new Object[6];
+            Object[] row = new Object[7];
             
             row[0] = br;
             row[1] = br.getLibrary();                    
@@ -216,7 +222,7 @@ public class EmployeeManagementJPanel extends javax.swing.JPanel {
             row[3] = br.getLibrary().getEmployeDirectory().getEmployeeId(u.getAccountId());
             row[4] =u.getUserName();
             row[5] =u.getPassword();
-            
+            row[6] =u.getRole();
             tableModel.addRow(row);
         }
         }

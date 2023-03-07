@@ -61,6 +61,7 @@ public class BranchManagementJPanel extends javax.swing.JPanel {
         libraryField = new javax.swing.JTextField();
         DeleteBranchBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 204, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -105,13 +106,18 @@ public class BranchManagementJPanel extends javax.swing.JPanel {
 
     private void addBranchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBranchBtnActionPerformed
         // TODO add your handling code here:
+    
+        if(appSystem.checkBranchUnique(branchField.getText())) {
+            JOptionPane.showMessageDialog(null, "Pleae rename the Branch");
+        }else{
+                   
         this.branch = this.appSystem.createBranch(branchField.getText());
         this.library=this.branch.createLibrary(libraryField.getText());
         branch.setLibrary(library);
 
 
         JOptionPane.showMessageDialog(null, "Branch and Library Created");
-        displayBranchInfo();
+        displayBranchInfo();}
 
     }//GEN-LAST:event_addBranchBtnActionPerformed
 

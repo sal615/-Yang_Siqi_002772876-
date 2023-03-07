@@ -72,7 +72,7 @@ public class UserAccountDirectory {
     }
     
     public Boolean accountExists(String username, String password) {
-        for(UserAccount u: this.userAccountList) {
+        for(UserAccount u: this.getUseraccountList()) {
             if(u.getUserName().equals(username) && u.getPassword().equals(password)) {
                 return true;
             }

@@ -30,7 +30,6 @@ public class CustomerDirectory {
        
     public Customer findById(String id) {
         for(Customer c: this.customerList) {
-            System.out.print(c.getId() + " -- "+ c.getName());
             if(c.getId().equals(id)) {
                 return c;
             }

@@ -63,11 +63,10 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         rentalHistoryTable = new javax.swing.JTable();
         accepteBtn = new javax.swing.JButton();
-        rejectBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         statusComboBox = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
 
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         rentalHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -98,24 +97,13 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 530, 160));
 
-        accepteBtn.setText("Accepte");
+        accepteBtn.setText("ok");
         accepteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 accepteBtnActionPerformed(evt);
             }
         });
         jPanel1.add(accepteBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
-
-        rejectBtn.setText("Reject");
-        rejectBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rejectBtnActionPerformed(evt);
-            }
-        });
-        jPanel1.add(rejectBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
-
-        jButton1.setText("View");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
 
         statusComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Approve", "Reject" }));
         jPanel1.add(statusComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, -1, -1));
@@ -152,21 +140,13 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
         RentalRequest rr= (RentalRequest) rentalHistoryTable.getValueAt(selectedRow, 0);
         if(selectedRow >= 0) {
            rr.setStatus((String) statusComboBox.getSelectedItem());
-           if(statusComboBox.getSelectedItem().equals("Approve")){
-               //book.setIsAvailablityFlag(false);
+           if(statusComboBox.getSelectedItem().equals("Approve")&& rr.getBook()!=null){
+               rr.getBook().setIsAvailablityFlag(false);}
+           if(statusComboBox.getSelectedItem().equals("Approve")&& rr.getMagazine()!=null){   
                rr.getMagazine().setIsAvailablityFlag(false);
-               rr.getMagazine().setIsAvailablityFlag(false);
-               //magazine.setIsAvailablityFlag(false);
             } 
         }
-        displayHistory();
-      
-    }//GEN-LAST:event_accepteBtnActionPerformed
 
-    private void rejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBtnActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = rentalHistoryTable.getSelectedRow();
-        RentalRequest rr= (RentalRequest) rentalHistoryTable.getValueAt(selectedRow, 0);
         if(selectedRow >= 0) {
            rr.setStatus((String) statusComboBox.getSelectedItem());
            if(statusComboBox.getSelectedItem().equals("Reject")&& rr.getBook()!=null){
@@ -180,8 +160,8 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
         }
         displayHistory();
         
-        
-    }//GEN-LAST:event_rejectBtnActionPerformed
+      
+    }//GEN-LAST:event_accepteBtnActionPerformed
 
     private void rentalHistoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rentalHistoryTableMouseClicked
         // TODO add your handling code here:
@@ -189,12 +169,13 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_rentalHistoryTableMouseClicked
     public void displayHistory(){
+        historytableModel.setRowCount(0);
         for(Customer c: this.appSystem.getCustomerDirectory().getCustomerList()) {
         ArrayList<RentalRequest> rentalrequests= c.getRentalrequest();
         
         if(rentalrequests.size()>0){
                        
-            historytableModel.setRowCount(0);
+            
             for (RentalRequest rr:rentalrequests){
                if(rr.getLib().equals(this.branchlibrary)) {
                 Object row[] = new Object[6];
@@ -217,11 +198,9 @@ public class RentalRequestManagementJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accepteBtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton rejectBtn;
     private javax.swing.JTable rentalHistoryTable;
     private javax.swing.JComboBox statusComboBox;
     // End of variables declaration//GEN-END:variables

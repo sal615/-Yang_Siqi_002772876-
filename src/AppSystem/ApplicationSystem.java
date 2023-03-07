@@ -123,6 +123,18 @@ public class ApplicationSystem {
         return null;
         
     }
+        
+    public boolean checkBranchUnique(String name){
+        for (Branch b: this.branches){
+            if(b.getName().equals(name)){
+                return true;            
+            }
+        }
+        
+        return false;
+    } 
+        
+        
     
     
 

@@ -66,6 +66,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setPreferredSize(new java.awt.Dimension(800, 800));
 
+        controlPanel.setBackground(new java.awt.Color(255, 255, 204));
         controlPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backBtn.setText("LOGOUT");
@@ -102,6 +103,7 @@ public class SystemAdminJFrame extends javax.swing.JFrame {
 
         jSplitPane1.setTopComponent(controlPanel);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jSplitPane1.setRightComponent(jPanel1);
 

@@ -63,7 +63,7 @@ public class Branch {
         int totalRevenue =0;
         for(RentalRequest rr:library.getRentalrequest().getRentalRequestList()){
            
-            if(rr.getStatus().equals("Approve")||rr.getStatus().equals("Return")){
+            if(rr.getStatus().equals("Approve")||rr.getStatus().equals("Returned")){
                 totalRevenue += rr.getPrice();
             }
         }

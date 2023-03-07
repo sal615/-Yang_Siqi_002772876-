@@ -80,6 +80,7 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 153, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         backBtn.setText("BACK");
@@ -212,9 +213,9 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_rentalHistoryTableMouseClicked
     public void displayBookInfo() {
-
+        booktableModel.setRowCount(0);
         if(branch.getLibrary().getBookDirectory().getBookList().size()>0){
-            booktableModel.setRowCount(0);
+            
 
                 for(Book b:branch.getLibrary().getBookDirectory().getBookList()){
                     Object row[] = new Object[5];
@@ -232,9 +233,9 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
         }
     }
     public void displayMagazineInfo() {
-        
+        magazinetableModel.setRowCount(0);
         if(branch.getLibrary().getGeneralDirectory().getMagazineList().size()>0){
-            magazinetableModel.setRowCount(0);
+            
 
                 for (Magazine m:branch.getLibrary().getGeneralDirectory().getMagazineList()){
                     Object row[] = new Object[5];
@@ -252,12 +253,13 @@ public class BranchManagerJFrame extends javax.swing.JFrame {
     }
     
     public void displayHistory(){
+        historytableModel.setRowCount(0);
         for(Customer c: this.appSystem.getCustomerDirectory().getCustomerList()) {
         ArrayList<RentalRequest> rentalrequests= c.getRentalrequest();
         
         if(rentalrequests.size()>0){
                        
-            historytableModel.setRowCount(0);
+            
             for (RentalRequest rr:rentalrequests){
                if(rr.getLib().equals(this.branch.getLibrary())) {
                 Object row[] = new Object[6];

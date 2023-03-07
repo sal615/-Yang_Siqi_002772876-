@@ -61,6 +61,8 @@ public class LibrarianJFrame extends javax.swing.JFrame {
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        jPanel2.setBackground(new java.awt.Color(51, 204, 255));
+
         backBtn.setText("Log out");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +126,8 @@ public class LibrarianJFrame extends javax.swing.JFrame {
         );
 
         jSplitPane1.setTopComponent(jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(0, 204, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

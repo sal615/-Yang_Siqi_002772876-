@@ -59,6 +59,7 @@ public class CustomerManagementJPanel extends javax.swing.JPanel {
         passwordLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
 
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(fieldusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 120, 30));
         jPanel1.add(fieldPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 120, 30));
@@ -128,12 +129,32 @@ public class CustomerManagementJPanel extends javax.swing.JPanel {
 
         
         UserAccountDirectory ua = this.appSystem.getSystemAdminAccount();
+//        for( UserAccount u :ua.getUseraccountList() ) {
+//            System.out.println(u.getUserName());
+//            System.out.println(u.getPassword()); 
+//        }
         
-        
+        Boolean foundDuplicate = false;
         if(ua.accountExists(fieldusername.getText(), fieldPassword.getText())) {
+            foundDuplicate = true;
             JOptionPane.showMessageDialog(null, "Sorry credentials are taken.");
         }
-        else {
+            
+        
+        for(Branch branch: this.appSystem.getBranches()){
+            UserAccountDirectory uad = branch.getBranchuseraccountDirectory();
+        
+            if(uad.accountExists(fieldusername.getText(), fieldPassword.getText())) {
+                foundDuplicate = true;
+                JOptionPane.showMessageDialog(null, "Sorry credentials are taken.");
+                break;
+            }
+
+        }
+//        if(ua.accountExists(fieldusername.getText(), fieldPassword.getText())) {
+//            JOptionPane.showMessageDialog(null, "Sorry credentials are taken.");
+//        }
+        if(foundDuplicate == false){
             // save the customer obj for user and useraccount credentials
             
             UserAccount user = this.appSystem.getSystemAdminAccount().createUserAccount(fieldusername.getText(), fieldPassword.getText(), new CustomerRole());
@@ -160,7 +181,7 @@ public class CustomerManagementJPanel extends javax.swing.JPanel {
             row[3] = u.getPassword();
             
             tableModel.addRow(row);
-    }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
